@@ -10,7 +10,7 @@ Created on Wed Sep 29 14:23:48 2021
 
 import argparse, pickle
 from sklearn.dummy import DummyClassifier
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, log_loss, roc_auc_score
 
 # setting up CLI
 parser = argparse.ArgumentParser(description = "Classifier")
@@ -20,6 +20,10 @@ parser.add_argument("-e", "--export_file", help = "export the trained classifier
 parser.add_argument("-i", "--import_file", help = "import a trained classifier from the given location", default = None)
 parser.add_argument("-m", "--majority", action = "store_true", help = "majority class classifier")
 parser.add_argument("-a", "--accuracy", action = "store_true", help = "evaluate using accuracy")
+# adding different classifiar for evaluation mertices
+parser.add_argument("-l", "--logLoss", action = "store_true", help = "log loss class classifier")
+parser.add_argument("-r", "--roc_auc", action = "store_true", help = "roc auc score class classifier")
+
 args = parser.parse_args()
 
 # load data
@@ -46,6 +50,12 @@ prediction = classifier.predict(data["features"])
 evaluation_metrics = []
 if args.accuracy:
     evaluation_metrics.append(("accuracy", accuracy_score))
+    
+    ## LOG LOSS AND ROC_AUC IMPLEMEMTED HERE ##
+if args.logLoss:
+    evaluation_metrics.append(("logLoss", log_loss))
+if args.roc_auc:
+    evaluation_metrics.append(("roc_auc", roc_auc_score))
 
 # compute and print them
 for metric_name, metric in evaluation_metrics:
