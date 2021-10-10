@@ -11,9 +11,10 @@ Created on Wed Sep 29 11:00:24 2021
 import argparse, csv, pickle
 import pandas as pd
 import numpy as np
-from code.feature_extraction.character_length import CharacterLength
-from code.feature_extraction.feature_collector import FeatureCollector
-from code.util import COLUMN_TWEET, COLUMN_LABEL
+from script.feature_extraction.character_length import CharacterLength
+from script.feature_extraction.feature_collector import FeatureCollector
+from script.feature_extraction.month_tweet import extract_month
+from script.util import COLUMN_TWEET, COLUMN_LABEL,COLUMN_DATE
 
 
 # setting up CLI
@@ -23,10 +24,13 @@ parser.add_argument("output_file", help = "path to the output pickle file")
 parser.add_argument("-e", "--export_file", help = "create a pipeline and export to the given location", default = None)
 parser.add_argument("-i", "--import_file", help = "import an existing pipeline from the given location", default = None)
 parser.add_argument("-c", "--char_length", action = "store_true", help = "compute the number of characters in the tweet")
+parser.add_argument("-m", "--month_tweet", action= "store_true", help= "retrieve the month the tweet was posted")
 args = parser.parse_args()
 
 # load data
 df = pd.read_csv(args.input_file, quoting = csv.QUOTE_NONNUMERIC, lineterminator = "\n")
+#TODO delete this line of code
+df = df.iloc[0:10]
 
 if args.import_file is not None:
     # simply import an exisiting FeatureCollector
@@ -40,7 +44,8 @@ else:    # need to create FeatureCollector manually
     if args.char_length:
         # character length of original tweet (without any changes)
         features.append(CharacterLength(COLUMN_TWEET))
-    
+    if args.month_tweet:
+        features.append(extract_month(COLUMN_DATE))
     # create overall FeatureCollector
     feature_collector = FeatureCollector(features)
     
