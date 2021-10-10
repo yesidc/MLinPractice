@@ -89,6 +89,7 @@ The features to be extracted can be configured with the following optional param
 - `-c` or `--char_length`: Count the number of characters in the "tweet" column of the data frame. (see code/feature_extraction/character_length.py)
 - `-m` or `--month_tweet`: Extracts from the "date" column the month the tweet was posted. (see script/feature_extraction/month_tweet.py)
 - `-p` or `--contain_photo`: Returns 1 if the post contains a photo,; 0 otherwise. (see script/feature_extraction/contain_photo.py)
+- `-w` or `--contain_website`: Returns 1 if the post contains a website,; 0 otherwise. (see script/feature_extraction/contain_website.py)
 
 Moreover, the script support importing and exporting fitted feature extractors with the following optional arguments:
 - `-i` or `--import_file`: Load a configured and fitted feature extraction from the given pickle file. Ignore all parameters that configure the features to extract.
