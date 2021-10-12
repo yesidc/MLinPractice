@@ -1,12 +1,12 @@
 #!/bin/bash
 
 echo "loading data"
-code/load_data.sh
+script/load_data.sh
 echo "preprocessing"
-code/preprocessing.sh
+script/preprocessing.sh
 echo "feature extraction"
-code/feature_extraction.sh
+script/feature_extraction.sh
 echo "dimensionality reduction"
-code/dimensionality_reduction.sh
+script/dimensionality_reduction.sh
 echo "classification"
-code/classification.sh
+script/classification.sh
