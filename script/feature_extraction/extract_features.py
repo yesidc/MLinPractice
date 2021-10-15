@@ -8,6 +8,8 @@ Created on Wed Sep 29 11:00:24 2021
 @author: lbechberger
 """
 
+
+
 import argparse, csv, pickle
 import pandas as pd
 import numpy as np
@@ -16,7 +18,8 @@ from script.feature_extraction.feature_collector import FeatureCollector
 from script.feature_extraction.month_tweet import extract_month
 from script.feature_extraction.contain_photo import contain_pthotos
 from script.feature_extraction.contain_website import contain_websites
-from script.util import COLUMN_TWEET, COLUMN_LABEL,COLUMN_DATE, COLUMN_PHOTOS,COLUMN_URLS
+from script.feature_extraction.tfidf_features import tfidf_vectors
+from script.util import COLUMN_TWEET, COLUMN_LABEL,COLUMN_DATE, COLUMN_PHOTOS,COLUMN_URLS,COLUMN_PUNCTUATION
 
 
 # setting up CLI
@@ -29,6 +32,8 @@ parser.add_argument("-c", "--char_length", action = "store_true", help = "comput
 parser.add_argument("-m", "--month_tweet", action= "store_true", help= "retrieve the month the tweet was posted")
 parser.add_argument("-p", "--contain_photo", action= "store_true", help= "returns 1 if the post contains a photo; 0 otherwise")
 parser.add_argument("-w", "--contain_website", action= "store_true", help= "returns 1 if the post contains a website; 0 otherwise")
+#TODO Add to documentation
+parser.add_argument("-t", "--tfidf_vector", action= "store_true", help= "Extracts tfidf of each tweet")
 args = parser.parse_args()
 
 # load data
@@ -36,7 +41,8 @@ df = pd.read_csv(args.input_file, quoting = csv.QUOTE_NONNUMERIC, lineterminator
 
 #TODO change readme reference to code --> change it to script
 #TODO delete this line of code
-df = df.iloc[0:50]
+df = df.iloc[0:10]
+
 
 if args.import_file is not None:
     # simply import an exisiting FeatureCollector
@@ -60,6 +66,8 @@ else:    # need to create FeatureCollector manually
     if args.contain_website:
         #whether a website was included in the tweet.
         features.append(contain_websites(COLUMN_URLS))
+    if args.tfidf_vector:
+        features.append(tfidf_vectors(COLUMN_PUNCTUATION))
 
 
     # create overall FeatureCollector
