@@ -9,7 +9,7 @@ class tfidf_vectors (FeatureExtractor):
 
 
     def _get_values (self,inputs):
-        """Given the photos column, returns 1 if a photo was included in the post, 0 otherwise"""
+        """Given the tweet_no_punctuation column, extracts tfidf vector representation for each tweet"""
         tfidf = TfidfVectorizer(sublinear_tf=True, min_df=5, norm='l2', encoding='latin-1', ngram_range=(1, 2),
                                 stop_words='english')
         features_result = tfidf.fit_transform(inputs[0]).toarray()

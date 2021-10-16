@@ -90,6 +90,7 @@ The features to be extracted can be configured with the following optional param
 - `-m` or `--month_tweet`: Extracts from the "date" column the month the tweet was posted. (see script/feature_extraction/month_tweet.py)
 - `-p` or `--contain_photo`: Returns 1 if the post contains a photo,; 0 otherwise. (see script/feature_extraction/contain_photo.py)
 - `-w` or `--contain_website`: Returns 1 if the post contains a website,; 0 otherwise. (see script/feature_extraction/contain_website.py)
+- `-t` or `tfidf_vector`: Extracts tfidf for the tweets. (see script/feature_extraction/tfidf_features.py)
 
 Moreover, the script support importing and exporting fitted feature extractors with the following optional arguments:
 - `-i` or `--import_file`: Load a configured and fitted feature extraction from the given pickle file. Ignore all parameters that configure the features to extract.

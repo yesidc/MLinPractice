@@ -32,7 +32,6 @@ parser.add_argument("-c", "--char_length", action = "store_true", help = "comput
 parser.add_argument("-m", "--month_tweet", action= "store_true", help= "retrieve the month the tweet was posted")
 parser.add_argument("-p", "--contain_photo", action= "store_true", help= "returns 1 if the post contains a photo; 0 otherwise")
 parser.add_argument("-w", "--contain_website", action= "store_true", help= "returns 1 if the post contains a website; 0 otherwise")
-#TODO Add to documentation
 parser.add_argument("-t", "--tfidf_vector", action= "store_true", help= "Extracts tfidf of each tweet")
 args = parser.parse_args()
 
