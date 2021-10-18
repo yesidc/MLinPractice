@@ -84,6 +84,9 @@ Which features are the most important ones and why may that be the case?
 Which classifier(s) did you use? Which hyperparameter(s) (with their respective
 candidate values) did you look at? What were your reasons for this?
 
+#### Multinomial Naive Bayes:
+We implemented Multinomial Naive Bayes (which implements the Naive Bayes algorithm) since, according to <a href="https://scikit-learn.org/stable/modules/naive_bayes.html">sklearn</a> documentation, besides it being a classic naive Bayes variant used in text classification; it also performes well with tf-idf vectors (which is one of the features we extracted)
+
 ### Results
 
 The big finale begins: What are the evaluation results you obtained with your
@@ -95,3 +98,5 @@ selected setup: How well does it generalize to the test set?
 Which hyperparameter settings are how important for the results?
 How good are we? Can this be used in practice or are we still too bad?
 Anything else we may have learned?
+
+
