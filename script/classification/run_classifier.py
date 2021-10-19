@@ -14,6 +14,7 @@ from sklearn.metrics import accuracy_score, cohen_kappa_score
 from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.pipeline import make_pipeline
+from sklearn import naive_bayes
 from mlflow import log_metric, log_param, set_tracking_uri
 
 # setting up CLI
@@ -25,6 +26,8 @@ parser.add_argument("-i", "--import_file", help="import a trained classifier fro
 parser.add_argument("-m", "--majority", action="store_true", help="majority class classifier")
 parser.add_argument("-f", "--frequency", action="store_true", help="label frequency classifier")
 parser.add_argument("--knn", type=int, help="k nearest neighbor classifier with the specified value of k", default=None)
+
+parser.add_argument("-b", "--m_naive_Bayes", action="store_true", help="Multinomial Naive Bayes")
 
 parser.add_argument("-a", "--accuracy", action="store_true", help="evaluate using accuracy")
 parser.add_argument("-k", "--kappa", action="store_true", help="evaluate using Cohen's kappa")
@@ -74,6 +77,13 @@ else:  # manually set up a classifier
         standardizer = StandardScaler()
         knn_classifier = KNeighborsClassifier(args.knn, n_jobs=-1)
         classifier = make_pipeline(standardizer, knn_classifier)
+    elif args.m_naive_Bayes:
+        # Multinomial Bayes classifier
+        print("    Multinomial Bayes classifier")
+        log_param("classifier", "Bayes")
+        # TODO tune paramters
+        # params = {"classifier": "frequency"}
+        classifier = naive_bayes.MultinomialNB()
 
     classifier.fit(data["features"], data["labels"].ravel())
     log_param("dataset", "training")

@@ -1,0 +1,15 @@
+artifact_uri: data/classification/mlflow/0/70ff97e7a26e43cfadb585d7c86ec0d4/artifacts
+end_time: 1634640965933
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+name: ''
+run_id: 70ff97e7a26e43cfadb585d7c86ec0d4
+run_uuid: 70ff97e7a26e43cfadb585d7c86ec0d4
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1634640896171
+status: 3
+tags: []
+user_id: yesid
