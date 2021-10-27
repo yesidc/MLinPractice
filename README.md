@@ -20,13 +20,14 @@ conda install -y -q -c conda-forge nltk=3.6.3
 conda install -y -q -c conda-forge gensim=4.1.2
 conda install -y -q -c conda-forge spyder=5.1.5
 conda install -y -q -c conda-forge pandas=1.1.5
+conda install -y -q -c conda-forge dataframe_image 
 ```
 
 You can double-check that all of these packages have been installed by running `conda list` inside of your virtual environment. The Spyder IDE can be started by typing `~/miniconda/envs/MLinPractice/bin/spyder` in your terminal window (assuming you use miniconda, which is installed right in your home directory).
 
 In order to save some space on your local machine, you can run `conda clean -y -q --all` afterwards to remove any temporary files.
 
-The installed libraries are used for machine learning (`scikit-learn`), visualizations (`matplotlib`), NLP (`nltk`), word embeddings (`gensim`), and IDE (`spyder`), and data handling (`pandas`)
+The installed libraries used for machine learning are (`scikit-learn`), visualizations (`matplotlib`), NLP (`nltk`), word embeddings (`gensim`), and IDE (`spyder`), and data handling (`pandas`)
 
 ## Overall Pipeline
 
@@ -37,6 +38,22 @@ The overall pipeline can be executed with the script `code/pipeline.sh`, which e
 - The script `code/dimensionality_reduction.sh` takes care of dimensionality reduction.
 - The script `code/classification.sh` takes care of training and evaluating a classifier.
 - The script `code/application.sh` launches the application example.
+
+## Features visualization
+
+The data features can be visualized by running the script `visualizations.py` which creates a `features_visualization` folder to store the images. This script allows you to explore the relations between different data features and to do feature selection accordingly.
+
+The script's optional parameters are as follows:
+- `-d` or `--default_feat_visualizations` creates all the default visualizations and saves the images in the `features_visualization` folder.
+- `-v` or `--features_variance` generates the csv data variance as png.
+- `des` or `--data_description` generates the csv description of the data as png.
+- `-mg` or `--group_means` generates png image of the features group means.
+- `-fmv` or `--feature_mean_var` generates png image of the features mean and variance.
+- `-fc` or `--feature_correlations` generates png images of the features correlations before and after feature selection.
+- `-p` or `--pairplot_correlations` generates png image of the pairwise relationship of the features distributions in the dataset.
+- `-vir` or `--tweets_virality` generates png images of the virality of tweets by feature.
+- `-t` or `--time_virality` generates png images of the virality of tweets by time features.
+- `-dv` or `--describe_virality` generates png images of the virality description of tweets by features.
 
 ## Preprocessing
 
