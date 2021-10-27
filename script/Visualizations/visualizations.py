@@ -20,6 +20,8 @@ parser.add_argument("-fmv", "--feature_mean_var", action="store_true", help = "g
 parser.add_argument("-fc", "--feature_correlations", action="store_true", help = "generates png image of the features correlation before and after feature selection")
 parser.add_argument("-p", "--pairplot_correlations", action="store_true", help = "generates png image of the pairwise relationship of the features distributions in the dataset")
 parser.add_argument("-vir", "--tweets_virality", action="store_true", help = "generates png images of the virality of tweets by feature")
+parser.add_argument("-t", "--time_virality", action="store_true", help = "generates png images of the virality of tweets by time features")
+parser.add_argument("-dv", "--describe_virality", action="store_true", help = "generates png images of the virality description of tweets by features")
 
 
 args = parser.parse_args()
@@ -128,12 +130,17 @@ def feature_correlation(data, data_cleaned):
 if args.feature_correlations:
     feature_correlation(df, df_clean)
 
-if args.pairplot_correlations:
+
+def pairplot_correlations(data, sample=30000):
     # pairwise relationship of the features distributions in the dataset.
-    sn.pairplot(df_clean.sample(50000), hue="label")
+    sn.pairplot(data.sample(sample), hue="label")
     plt.savefig(args.output_file + "/feature_selection_by_correlation_pairplot.png")
 
+if args.pairplot_correlations:
+    pairplot_correlations(df_clean)
 
+
+# explore tweets virality by features relations
 def scatter_viral(data, x, y, xlog=False, ylog=False, plot_title="", save=""):
     fig, ax = plt.subplots(figsize=(7, 5))
     ax.margins(0.05)  # Optional, just adds 5% padding to the autoscaling
@@ -153,13 +160,109 @@ def scatter_viral(data, x, y, xlog=False, ylog=False, plot_title="", save=""):
 
     # save images to the visualization folder as indicated by the parser
     plt.savefig(args.output_file + save)
-    # plt.show()
 
+
+def tweets_virality_features(groups):
+    scatter_viral(groups, "likes_count", "retweets_count", True, True,
+                  plot_title="Feature selection for virality: retweets as a function of likes",
+                  save="/retweets_likes.png")
+    scatter_viral(groups, "likes_count", "replies_count", True, True,
+                  plot_title="Feature selection for virality: replies as a function of likes",
+                  save="/replies_likes.png")
+    scatter_viral(groups, "retweets_count", "replies_count", True, True,
+                  plot_title="Feature selection for virality: replies as a function of retweets",
+                  save="/replies_retweets.png")
+    scatter_viral(groups, "likes_count", "language", True, False,
+                  plot_title="Feature selection for virality: language as a function of likes",
+                  save="/language_likes.png")
+    scatter_viral(groups, "likes_count", "hashtags", True, False,
+                  plot_title="Feature selection for virality: hashtags as a function of likes",
+                  save="/hastags_likes.png")
+    scatter_viral(groups, "likes_count", "photos", True, False,
+                  plot_title="Feature selection for virality: photos as a function of likes", save="/photos_likes.png")
 
 if args.tweets_virality:
-    scatter_viral(groups, "likes_count", "retweets_count", True, True,
-                  plot_title="Feature selection for virality: retweets as a function of likes", save="/retweets_likes.png")
-    scatter_viral(groups, "likes_count", "replies_count", True, True,
-                  plot_title="Feature selection for virality: replies as a function of likes", save="/replies_likes.png")
-    scatter_viral(groups, "retweets_count", "replies_count", True, True,
-                  plot_title="Feature selection for virality: replies as a function of retweets", save="/replies_retweets.png")
+    tweets_virality_features(groups)
+
+
+# explore tweets virality by date and time features.
+
+def count_tweets_per_creation_date(data):
+    data['tweets_per_year'] = pd.DataFrame(pd.DatetimeIndex(data['date']).year.values)
+    data['tweets_per_month'] = pd.DataFrame(pd.DatetimeIndex(data['date']).month.values)
+    data['tweets_per_day'] = pd.DataFrame(pd.DatetimeIndex(data['date']).day.values)
+    data['tweets_per_hour'] = pd.DataFrame(pd.DatetimeIndex(data['time']).hour.values)
+
+    column_dates = ["tweets_per_year", "tweets_per_month","tweets_per_day","tweets_per_hour"]
+    plt.figure(figsize=(16,10))
+
+    # amount of tweets per date
+    for i, name in enumerate(column_dates):
+        plt.subplot(2,2, i+1)
+        sn.histplot(data, x = name, discrete = True)
+    plt.suptitle("Amount of tweets per creation date", fontsize=20)
+    plt.savefig(args.output_file + "/tweets_amount_per_creation_date.png")
+
+    # virality of tweets per date
+    plt.figure(figsize=(16, 10))
+    for i, name in enumerate(column_dates):
+        plt.subplot(2, 2, i + 1)
+        sn.countplot(name, data=data, hue='label')
+    plt.suptitle("Virality of tweets per creation date", fontsize=20)
+    plt.savefig(args.output_file + "/tweets_virality_per_creation_date.png")
+
+if args.time_virality:
+    count_tweets_per_creation_date(df_clean)
+
+
+if args.default_feat_visualizations:
+    variance(df)
+    describe(df)
+    groups_means(df_clean)
+    feature_mean_var_by_label(df_clean)
+    feature_correlation(df, df_clean)
+    pairplot_correlations(df_clean)
+    tweets_virality_features(groups)
+    count_tweets_per_creation_date(df_clean)
+
+
+# explore tweets virality by describing the data to confirm the visualizations information
+def describe_features_virality(df):
+    # select and group the features by label
+    likes_to_viral = df[["likes_count", "label"]]
+    retweets_to_viral = df[["retweets_count", "label"]]
+    replies_to_viral = df[["replies_count", "label"]]
+
+    likes_groups = likes_to_viral.groupby('label')
+    retweets_groups = retweets_to_viral.groupby('label')
+    replies_groups = replies_to_viral.groupby('label')
+
+    # Learning: Likely not viral if likes < 50
+    desc1 = likes_groups.describe()
+    dfi.export(desc1, args.output_file + "/likes_description.png")
+
+    # Learning: Likely not viral if retweets < 47
+    desc2 = retweets_groups.describe()
+    dfi.export(desc2, args.output_file + "/retweets_description.png")
+
+    # Learning: Does not explain virality as well, given percentile distributions
+    # are flat between true and false labeled tweets
+    desc3 = replies_groups.describe()
+    dfi.export(desc3, args.output_file + "/replies_description.png")
+
+if args.describe_virality:
+    describe_features_virality(df_clean)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
