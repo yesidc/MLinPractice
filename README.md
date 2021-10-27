@@ -20,13 +20,14 @@ conda install -y -q -c conda-forge nltk=3.6.3
 conda install -y -q -c conda-forge gensim=4.1.2
 conda install -y -q -c conda-forge spyder=5.1.5
 conda install -y -q -c conda-forge pandas=1.1.5
+conda install -y -q -c conda-forge dataframe_image 
 ```
 
 You can double-check that all of these packages have been installed by running `conda list` inside of your virtual environment. The Spyder IDE can be started by typing `~/miniconda/envs/MLinPractice/bin/spyder` in your terminal window (assuming you use miniconda, which is installed right in your home directory).
 
 In order to save some space on your local machine, you can run `conda clean -y -q --all` afterwards to remove any temporary files.
 
-The installed libraries are used for machine learning (`scikit-learn`), visualizations (`matplotlib`), NLP (`nltk`), word embeddings (`gensim`), and IDE (`spyder`), and data handling (`pandas`)
+The installed libraries used for machine learning are (`scikit-learn`), visualizations (`matplotlib`), NLP (`nltk`), word embeddings (`gensim`), and IDE (`spyder`), and data handling (`pandas`)
 
 ## Overall Pipeline
 
@@ -43,6 +44,8 @@ The overall pipeline can be executed with the script `code/pipeline.sh`, which e
 The data features can be visualized by running the script `visualizations.py`. This script allows you to explore the relations between different data features and to do feature selection accordingly.
 The script's optional parameters are as follows:
 - `-d` or `--default_feat_visualizations` creates all the default visualizations and saves the images in the `features_visualization` folder.
+- `-v` or `--features_variance` generates the csv data variance as png.
+
 
 ## Preprocessing
 
