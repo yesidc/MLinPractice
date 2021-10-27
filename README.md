@@ -38,6 +38,12 @@ The overall pipeline can be executed with the script `code/pipeline.sh`, which e
 - The script `code/classification.sh` takes care of training and evaluating a classifier.
 - The script `code/application.sh` launches the application example.
 
+## Features visualization
+
+The data features can be visualized by running the script `visualizations.py`. This script allows you to explore the relations between different data features and to do feature selection accordingly.
+The script's optional parameters are as follows:
+- `-d` or `--default_feat_visualizations` creates all the default visualizations and saves the images in the `features_visualization` folder.
+
 ## Preprocessing
 
 All python scripts and classes for the preprocessing of the input data can be found in `code/preprocessing/`.
