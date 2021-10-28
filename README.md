@@ -98,12 +98,16 @@ All python scripts and classes for feature extraction can be found in `code/feat
 The script `extract_features.py` takes care of the overall feature extraction process and can be invoked as follows:
 ```python -m code.feature_extraction.extract_features path/to/input.csv path/to/output.pickle```
 Here, `input.csv` is the respective training, validation, or test set file created by `split_data.py`. The file `output.pickle` will be used to store the results of the feature extraction process, namely a dictionary with the following entries:
-- `"features"`: a numpy array with the raw feature values (rows are training examples, colums are features)
+- `"features"`: a numpy array with the raw feature values (rows are training examples, columns are features)
 - `"feature_names"`: a list of feature names for the columns of the numpy array
 - `"labels"`: a numpy array containing the target labels for the feature vectors (rows are training examples, only column is the label)
 
 The features to be extracted can be configured with the following optional parameters:
 - `-c` or `--char_length`: Count the number of characters in the "tweet" column of the data frame. (see code/feature_extraction/character_length.py)
+- `-m` or `--month_tweet`: Extracts from the "date" column the month the tweet was posted. (see script/feature_extraction/month_tweet.py)
+- `-p` or `--contain_photo`: Returns 1 if the post contains a photo,; 0 otherwise. (see script/feature_extraction/contain_photo.py)
+- `-w` or `--contain_website`: Returns 1 if the post contains a website,; 0 otherwise. (see script/feature_extraction/contain_website.py)
+- `-t` or `tfidf_vector`: Extracts tfidf for the tweets. (see script/feature_extraction/tfidf_features.py)
 
 Moreover, the script support importing and exporting fitted feature extractors with the following optional arguments:
 - `-i` or `--import_file`: Load a configured and fitted feature extraction from the given pickle file. Ignore all parameters that configure the features to extract.
