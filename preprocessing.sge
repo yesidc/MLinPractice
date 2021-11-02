@@ -1,0 +1,33 @@
+#!/bin/bash
+#$ -N preprocessing_task
+#$ -l mem=2G
+#$ -cwd
+#$ -pe default 2
+#$ -o $HOME
+#$ -e $HOME
+#$ -l h=*cippy*
+
+export PATH="$HOME/miniconda/bin:$PATH"
+eval "$(conda shell.bash hook)"
+
+# create directory if not yet existing
+mkdir -p data/preprocessing/split/
+echo " folder to store the split has been created and about to activate enviroment"
+echo $PWD
+
+conda activate MLinPractice
+
+# add labels
+echo "  creating labels"
+python -m script.preprocessing.create_labels data/raw/ data/preprocessing/labeled.csv $*
+
+# other preprocessing (removing punctuation etc.)
+echo "  general preprocessing"
+
+python -m script.preprocessing.run_preprocessing data/preprocessing/labeled.csv data/preprocessing/preprocessed.csv --punctuation --tokenize -e data/preprocessing/pipeline.pickle $*
+
+# split the data set
+echo "  splitting the data set"
+python -m script.preprocessing.split_data data/preprocessing/preprocessed.csv data/preprocessing/split/ -s 42 $*
+
+conda deactivate
