@@ -1,3 +1,5 @@
+#Adapted from course repository by Yesid Cano Nov. 2nd 2021
+
 #!/bin/bash
 #$ -N preprocessing_task
 #$ -l mem=2G
@@ -20,6 +22,12 @@ conda activate MLinPractice
 # add labels
 echo "  creating labels"
 python -m script.preprocessing.create_labels data/raw/ data/preprocessing/labeled.csv $*
+
+#download NLTK data needed for the preprocessing phase
+echo "downloading NLTK stopwords, punk and wordnet"
+python -m nltk.downloader stopwords $*
+python -m nltk.downloader punkt $*
+python -m nltk.downloader wordnet $*
 
 # other preprocessing (removing punctuation etc.)
 echo "  general preprocessing"
