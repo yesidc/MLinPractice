@@ -1,11 +1,12 @@
-# Documentation Example
+# Documentation for predicting tweets virality using ML
 
-Some introductory sentence(s). Data set and task are relatively fixed, so 
-probably you don't have much to say about them (unless you modifed them).
-If you haven't changed the application much, there's also not much to say about
-that.
-The following structure thus only covers preprocessing, feature extraction,
-dimensionality reduction, classification, and evaluation.
+In this project we worked with a data set composed of tweets about data analysis, data science, and data visualization.
+The main goal of this project was to analyse the data features and predict tweets virality.
+For easy applicability, a console-based application for tweet classification is provided. This allows anyone to type a 
+certain tweets into the console and have the model predict whether the tweet will become viral or not.
+
+In the following documentation we provide specifics about the processes involved during the model implementation.
+
 
 ## Evaluation
 
