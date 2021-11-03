@@ -90,6 +90,9 @@ The script takes the following optional parameters:
 - `-v` or `--validation_size` determines the relative size of the validation set and defaults to 0.2 (i.e., 20 % of the data).
 - `-s` or `--seed` determines the seed for intializing the random number generator used for creating the randomized split. Using the same seed across multiple runs ensures that the same split is generated. If no seed is set, the current system time will be used.
 
+### Grid
+The preprocessing steps described on this section can be also executed on the grid. To do so use `qsub preprocessing.sge`
+
 
 ## Feature Extraction
 
@@ -112,6 +115,9 @@ The features to be extracted can be configured with the following optional param
 Moreover, the script support importing and exporting fitted feature extractors with the following optional arguments:
 - `-i` or `--import_file`: Load a configured and fitted feature extraction from the given pickle file. Ignore all parameters that configure the features to extract.
 - `-e` or `--export_file`: Export the configured and fitted feature extraction into the given pickle file.
+
+### Grid
+To perform the feature extraction process on the Grid, use `qsub feature_extraction.sge`
 
 ## Dimensionality Reduction
 
