@@ -38,7 +38,7 @@ def variance(data):
     :param data: a csv file.
     :return: the csv data variance as png.
     """
-    var_img = pd.DataFrame({"Variance": df.var()})
+    var_img = pd.DataFrame({"Variance": data.var()})
     dfi.export(var_img, args.output_file + "/features_variance.png")
 
 if args.features_variance:
