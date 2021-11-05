@@ -38,7 +38,7 @@ def variance(data):
     :param data: a csv file.
     :return: the csv data variance as png.
     """
-    var_img = pd.DataFrame({"Variance": df.var()})
+    var_img = pd.DataFrame({"Variance": data.var()})
     dfi.export(var_img, args.output_file + "/features_variance.png")
 
 if args.features_variance:
@@ -60,6 +60,7 @@ df_clean = df[["likes_count", "replies_count", "retweets_count", "language", "vi
 df_clean["photos"] = df["photos"].map(lambda x: len(x[1:-1].split(', ')))
 df_clean["urls"] = df["urls"].map(lambda x: len(x[1:-1].split(', ')))
 df_clean["hashtags"] = df["hashtags"].map(lambda x: len(x[1:-1].split(', ')))
+df_clean["tweet_hour"] = pd.DataFrame(pd.DatetimeIndex(df['time']).hour.values)
 
 # group the cleaned data by groups
 groups = df_clean.groupby('label')
@@ -122,7 +123,7 @@ def feature_correlation(data, data_cleaned):
     sn.heatmap(data.corr(), ax=ax1)
     ax1.set_title("Feature correlation initial tweets data")
     # Heat map correlation of features after selection (fig. bottom)
-    sn.heatmap(data_cleaned.corr(), ax=ax2)
+    sn.heatmap(data_cleaned.corr(), annot=True, ax=ax2)
     ax2.set_title("Feature correlation after selection")
     fig.tight_layout()
     plt.savefig(args.output_file + "/feature_selection_by_correlation.png")

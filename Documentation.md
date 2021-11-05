@@ -1,11 +1,12 @@
-# Documentation Example
+# Documentation for predicting tweets virality using ML
 
-Some introductory sentence(s). Data set and task are relatively fixed, so 
-probably you don't have much to say about them (unless you modifed them).
-If you haven't changed the application much, there's also not much to say about
-that.
-The following structure thus only covers preprocessing, feature extraction,
-dimensionality reduction, classification, and evaluation.
+In this project we worked with a data set composed of tweets about data analysis, data science, and data visualization.
+The main goal of this project was to analyse the data features and predict tweets virality.
+For easy applicability, a console-based application for tweet classification is provided. This allows anyone to type a 
+certain tweets into the console and have the model predict whether the tweet will become viral or not.
+
+In the following documentation we provide specifics about the processes involved during the model implementation.
+
 
 ## Evaluation
 
@@ -60,13 +61,23 @@ Can we already guess which features may be more useful than others?
 
 ## Dimensionality Reduction
 
-If you didn't use any because you have only few features, just state that here.
-In that case, you can nevertheless apply some dimensionality reduction in order
-to analyze how helpful the individual features are during classification
+We applied dimensionality reduction to those features of the data we had previously selected based on the visualizations.
+Some features created include:
+
+- `month_tweet`, and `hour_tweet` are from the Date and Time columns.
+- `contain_website`, `contain_photo` consists of the amount of websites and photos a tweet contained.
+- `tfidf` is a vectorial representation of the tweet.
+- `character_length` contains the length of the tweet.
+
+We wanted to reduce the dimensionality of the data to analyze the behaviour and usefulness of 
+specific features during classification. 
 
 ### Design Decisions
 
-Which dimensionality reduction technique(s) did you pick and why?
+In order to reduce the data's dimensionality we first standardized the data so that values would be around the same range 
+and, thus, preventing the difference between the values to be high. For this, we used the `StandardScaler` function from
+`sklearn.preprocessing`. Afterwards, we applied principal component analysis (PCA) to the standardized data 
+and reduced the dimensions to 2 `n_components = 2`.
 
 ### Results
 
