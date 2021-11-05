@@ -33,16 +33,18 @@ df = pd.read_csv(args.input_file, quoting=csv.QUOTE_NONNUMERIC, lineterminator="
 # Variance can help us identify which features values change the most. Those that have
 # a low variance means numbers stay pretty much same and will probably not tell us much.
 # On the contrary, those with high variance can tell us what us going on with the data.
-def variance(data):
+def variance(data, data2):
     """
-    :param data: a csv file.
-    :return: the csv data variance as png.
+    :param data: uncleaned .csv file
+    :param data2: cleaned
+    :return: the csv data variance as png for cleaned and uncleaned data.
     """
-    var_img = pd.DataFrame({"Variance": data.var()})
-    dfi.export(var_img, args.output_file + "/features_variance.png")
+    var_img1 = pd.DataFrame({"Variance": data.var()})
+    var_img2 = pd.DataFrame({"Variance cleaned": data2.var()})
 
-if args.features_variance:
-    variance(df)
+    dfi.export(var_img1, args.output_file + "/features_variance.png")
+    dfi.export(var_img2, args.output_file + "/features_variance_cleaned.png")
+
 
 def describe(data):
     """
@@ -64,6 +66,10 @@ df_clean["tweet_hour"] = pd.DataFrame(pd.DatetimeIndex(df['time']).hour.values)
 
 # group the cleaned data by groups
 groups = df_clean.groupby('label')
+
+# check the variance of initial df and df_clean
+if args.features_variance:
+    variance(df, df_clean)
 
 def groups_means(data):
     """
@@ -118,7 +124,7 @@ def feature_correlation(data, data_cleaned):
             When pairplot = True, it generates a pairwise plot relationship of the data set (sample = 50000)
     """
 
-    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(6, 8))
+    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 12))
     # Heatmap help us find the correlation between the different data features (fig. top)
     sn.heatmap(data.corr(), ax=ax1)
     ax1.set_title("Feature correlation initial tweets data")
@@ -181,6 +187,8 @@ def tweets_virality_features(groups):
                   save="/hastags_likes.png")
     scatter_viral(groups, "likes_count", "photos", True, False,
                   plot_title="Feature selection for virality: photos as a function of likes", save="/photos_likes.png")
+    scatter_viral(groups, "tweet_hour", "likes_count", False, True,
+                  plot_title="likes as a function of tweet's hour", save="/likes_tweet_hour.png")
 
 if args.tweets_virality:
     tweets_virality_features(groups)
