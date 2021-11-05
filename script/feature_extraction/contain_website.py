@@ -1,3 +1,9 @@
+"""
+Created on Thursday Oct 25  2021
+
+@author: yesidc
+"""
+
 import pandas as pd
 import numpy as np
 from script.feature_extraction.feature_extractor import FeatureExtractor

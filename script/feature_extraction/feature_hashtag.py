@@ -1,5 +1,5 @@
 """
-Created on Wed Oct 24  2021
+Created on Friday Nov 5  2021
 
 @author: yesidc
 """
@@ -7,7 +7,7 @@ Created on Wed Oct 24  2021
 import pandas as pd
 from script.feature_extraction.feature_extractor import FeatureExtractor
 
-class extract_month (FeatureExtractor):
+class extract_num_hashtag (FeatureExtractor):
 
     def __init__(self,input_column):
         super().__init__([input_column], "{0}_month".format(input_column))
