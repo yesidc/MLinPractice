@@ -19,7 +19,8 @@ from script.feature_extraction.month_tweet import extract_month
 from script.feature_extraction.contain_photo import contain_pthotos
 from script.feature_extraction.contain_website import contain_websites
 from script.feature_extraction.tfidf_features import tfidf_vectors
-from script.util import COLUMN_TWEET, COLUMN_LABEL,COLUMN_DATE, COLUMN_PHOTOS,COLUMN_URLS,COLUMN_PUNCTUATION
+from script.feature_extraction.feature_hashtag import extract_num_hashtags
+from script.util import COLUMN_TWEET, COLUMN_LABEL,COLUMN_DATE, COLUMN_PHOTOS,COLUMN_URLS,COLUMN_PUNCTUATION,COLUMN_HASHTAG
 
 
 # setting up CLI
@@ -33,6 +34,8 @@ parser.add_argument("-m", "--month_tweet", action= "store_true", help= "retrieve
 parser.add_argument("-p", "--contain_photo", action= "store_true", help= "returns 1 if the post contains a photo; 0 otherwise")
 parser.add_argument("-w", "--contain_website", action= "store_true", help= "returns 1 if the post contains a website; 0 otherwise")
 parser.add_argument("-t", "--tfidf_vector", action= "store_true", help= "Extracts tfidf of each tweet")
+parser.add_argument("-n", "--num_hashtags", action= "store_true", help= "Retrieves the number of hashtags per tweet")
+
 args = parser.parse_args()
 
 # load data
@@ -67,6 +70,9 @@ else:    # need to create FeatureCollector manually
         features.append(contain_websites(COLUMN_URLS))
     if args.tfidf_vector:
         features.append(tfidf_vectors(COLUMN_PUNCTUATION))
+
+    if args.num_hashtags:
+        features.append(extract_num_hashtags(COLUMN_HASHTAG))
 
 
     # create overall FeatureCollector
