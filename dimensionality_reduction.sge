@@ -1,0 +1,37 @@
+#Adapted from course repository by Yesid Cano Nov. 5th  2021
+
+#!/bin/bash
+#$ -N Dimensionality_r_task
+#$ -l mem=2G
+#$ -cwd
+#$ -pe default 2
+#$ -o $HOME
+#$ -e $HOME
+#$ -l h=*cippy*
+
+export PATH="$HOME/miniconda/bin:$PATH"
+eval "$(conda shell.bash hook)"
+
+# create directory if not yet existing
+
+mkdir -p data/dimensionality_reduction/
+
+conda activate MLinPractice
+
+# run dimensionality reduction on training set to fit the parameters
+echo "  training set"
+
+python -m script.dimensionality_reduction.reduce_dimensionality data/feature_extraction/training.pickle data/dimensionality_reduction/training.pickle -e data/dimensionality_reduction/pipeline.pickle -m 1 --verbose $*
+# run feature extraction on validation set and test set (with pre-fit parameters)
+
+echo "  validation set"
+
+python -m script.dimensionality_reduction.reduce_dimensionality data/feature_extraction/validation.pickle data/dimensionality_reduction/validation.pickle -i data/dimensionality_reduction/pipeline.pickle $*
+echo "  test set"
+
+python -m script.dimensionality_reduction.reduce_dimensionality data/feature_extraction/test.pickle data/dimensionality_reduction/test.pickle -i data/dimensionality_reduction/pipeline.pickle $*
+
+
+conda deactivate
+
+

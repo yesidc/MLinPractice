@@ -12,10 +12,14 @@ Created on Wed Sep 29 10:50:36 2021
 COLUMN_TWEET = "tweet"
 COLUMN_LIKES = "likes_count"
 COLUMN_RETWEETS = "retweets_count"
-
+COLUMN_DATE = "date"
+COLUMN_PHOTOS = "photos"
+COLUMN_URLS = "urls"
 # column names of novel columns for preprocessing
 COLUMN_LABEL = "label"
 COLUMN_PUNCTUATION = "tweet_no_punctuation"
 
 
 SUFFIX_TOKENIZED= "_tokenized"
+
+CLEANED_TWEET = "cleaned_tweet"
