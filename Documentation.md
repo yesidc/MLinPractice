@@ -3,7 +3,7 @@
 In this project we worked with a data set composed of tweets about data analysis, data science, and data visualization.
 The main goal of this project was to analyse the data features and predict tweets virality.
 For easy applicability, a console-based application for tweet classification is provided. This allows anyone to type a 
-certain tweets into the console and have the model predict whether the tweet will become viral or not.
+tweet into the console and have the model predict whether the tweet will become viral or not.
 
 In the following documentation we provide specifics about the processes involved during the model implementation.
 
