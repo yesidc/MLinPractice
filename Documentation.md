@@ -55,7 +55,11 @@ Initially, we did some exploratory analysis of the data features as given by loo
 variance.
 - Initial data features description and variance
 
+<img src="images/description_data.png" alt="drawing" width="200"  style="float:left"/>
+
 [comment]: <> (![df_description]&#40;images/description_data.png&#41;)
+
+<img src="images/features_variance.png" alt="drawing" width="200"  style="float:right"/>
 
 [comment]: <> (![df_variance]&#40;images/features_variance.png&#41;)
 
@@ -66,7 +70,9 @@ Also, dropped out those features with `NaN` values.
 [comment]: <> (![df_description]&#40;images/features_variance_cleaned.png&#41;)
 
 We also grouped the selected features by `label` (viral | non-viral) and calculated their means and variance.
-<img src="images/features_means_grouped_by_label.png" alt="drawing" width="100"/>
+
+<img src="images/features_means_grouped_by_label.png" alt="drawing" width="100"  style="float:left"/>
+
 
 ![df_description](images/features_means_by_label.png)
 
