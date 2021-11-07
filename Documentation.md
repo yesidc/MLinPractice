@@ -42,6 +42,57 @@ Maybe show a short example what your preprocessing does.
 
 Probably, no real interpretation possible, so feel free to leave this section out.
 
+## Feature Visualization
+To reduce the computational complexity and focus all the resources in the most valuable and telling 
+features, we decided to do some initial look into our `tweets` data to get an idea about how different 
+features interact with each other and how they influence tweets virality. This way we could reduce the amount 
+of less useful features we have and identify the most explanatory variables thus improving the interpretability 
+of the model. Afterwards, we can select those features that are more relevant for virality, and then use them
+to train our model to predict tweets virality. 
+
+### Design Decisions
+Initially, we did some exploratory analysis of the data features as given by looking at the data description and 
+variance.
+- Initial data features description and variance
+
+[comment]: <> (![df_description]&#40;images/description_data.png&#41;)
+
+[comment]: <> (![df_variance]&#40;images/features_variance.png&#41;)
+
+Afterwards we selected some features, created some others by counting the amount of hashtags, urls, photos, 
+videos and the hour of tweets creation since we consider they could be useful to predict tweets' virality. 
+Also, dropped out those features with `NaN` values.
+
+[comment]: <> (![df_description]&#40;images/features_variance_cleaned.png&#41;)
+
+We also grouped the selected features by `label` (viral | non-viral) and calculated their means and variance.
+![df_description](images/features_means_by_label.png)
+![df_description](images/features_variance_by_label.png)
+![df_description](images/features_means_grouped_by_label.png)
+
+Finally, we did feature selection by calculating the correlations between the data features. In the
+`feature_selection_by_correlation.png` we have the `heatmap` correlation for both the clean and uncleaned 
+data which give us a better representation of the features' relationship.
+![df_description](images/feature_selection_by_correlation.png)
+
+With the `df_clean` already grouped by label we proceed to explore tweets' virality by creating different scatterplots 
+for all features. 
+![df_description](images/hashtags_like.png) ![df_description](images/language_like.png) 
+![df_description](images/photos_like.png) ![df_description](images/replies_like.png) ![df_description](images/replies_retweets.png)
+![df_description](images/retweets_likes.png)
+
+The `Date` and `Time` features were also relevant for our analysis of tweets virality. Thus, we explored the amount of 
+tweets by date (`year`, `month`, and `day`) and time (`hour`) of creation.
+![df_description](images/tweets_amount_per_creation_date.png)
+![df_description](images/tweets_virality_per_creation_date.png)
+
+### Results
+
+The means and variances are pretty much alike and higher for features such as `likes_count`, `replies_count` and
+`retweets_count` when compared to the other features. Similarly, these three features show to have a high correlation. 
+
+### Interpretation
+
 ## Feature Extraction
 
 Again, either structure among decision-result-interpretation or based on feature,

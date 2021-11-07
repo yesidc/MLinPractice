@@ -30,6 +30,27 @@ args = parser.parse_args()
 df = pd.read_csv(args.input_file, quoting=csv.QUOTE_NONNUMERIC, lineterminator="\n")
 
 
+def describe(data):
+    """
+    :param data: a csv file.
+    :return: the csv general description of the data as png.
+    """
+    description = pd.DataFrame(data.describe())
+    dfi.export(description, args.output_file + "/description_data.png")
+
+if args.data_description:
+    describe(df)
+
+
+# clean, process, and group data features
+df_clean = df[["likes_count", "replies_count", "retweets_count", "language", "video", "label", "date", "time"]]
+# extract the amount of photos, urls, hashtags, and the hours when tweets were made
+df_clean["photos"] = df["photos"].map(lambda x: len(x[1:-1].split(', ')))
+df_clean["urls"] = df["urls"].map(lambda x: len(x[1:-1].split(', ')))
+df_clean["hashtags"] = df["hashtags"].map(lambda x: len(x[1:-1].split(', ')))
+df_clean["tweet_hour"] = pd.DataFrame(pd.DatetimeIndex(df['time']).hour.values)
+
+
 # Variance can help us identify which features values change the most. Those that have
 # a low variance means numbers stay pretty much same and will probably not tell us much.
 # On the contrary, those with high variance can tell us what us going on with the data.
@@ -42,35 +63,15 @@ def variance(data, data2):
     var_img1 = pd.DataFrame({"Variance": data.var()})
     var_img2 = pd.DataFrame({"Variance cleaned": data2.var()})
 
-    dfi.export(var_img1, args.output_file + "/features_variance.png")
+    dfi.export(var_img1, args.output_file + "/features_variance1.png")
     dfi.export(var_img2, args.output_file + "/features_variance_cleaned.png")
-
-
-def describe(data):
-    """
-    :param data: a csv file.
-    :return: the csv general description of the data as png.
-    """
-    description = pd.DataFrame(data.describe())
-    dfi.export(description, args.output_file + "/description_data.png")
-
-if args.data_description:
-    describe(df)
-
-# clean, process, and group data features
-df_clean = df[["likes_count", "replies_count", "retweets_count", "language", "video", "label", "date", "time"]]
-# extract the amount of photos, urls, hashtags, and the hours when tweets were made
-df_clean["photos"] = df["photos"].map(lambda x: len(x[1:-1].split(', ')))
-df_clean["urls"] = df["urls"].map(lambda x: len(x[1:-1].split(', ')))
-df_clean["hashtags"] = df["hashtags"].map(lambda x: len(x[1:-1].split(', ')))
-df_clean["tweet_hour"] = pd.DataFrame(pd.DatetimeIndex(df['time']).hour.values)
-
-# group the cleaned data by groups
-groups = df_clean.groupby('label')
 
 # check the variance of initial df and df_clean
 if args.features_variance:
     variance(df, df_clean)
+
+# group the cleaned data by groups
+groups = df_clean.groupby('label')
 
 def groups_means(data):
     """
@@ -102,12 +103,12 @@ def feature_mean_var_by_label(data):
     np.log10(feature_means_label).plot(kind='box')
     plt.xticks(rotation=18, ha='right')
     plt.title("Feature mean by label")
-    plt.savefig(args.output_file + "/features_variance_by_label.png")
+    plt.savefig(args.output_file + "/features_means_by_label.png")
     # variances
     np.log10(feature_var_label).plot(kind='box')
     plt.xticks(rotation=18, ha='right')
     plt.title("Feature variance by label")
-    plt.savefig(args.output_file + "/features_means_by_label.png")
+    plt.savefig(args.output_file + "/features_variance_by_label.png")
 
 if args.feature_mean_var:
     feature_mean_var_by_label(df_clean)
@@ -199,7 +200,7 @@ def tweets_virality_features(groups):
                   save="/language_likes.png")
     scatter_viral(groups, "likes_count", "hashtags", True, False,
                   plot_title="Feature selection for virality: hashtags as a function of likes",
-                  save="/hastags_likes.png")
+                  save="/hashtags_likes.png")
     scatter_viral(groups, "likes_count", "photos", True, False,
                   plot_title="Feature selection for virality: photos as a function of likes", save="/photos_likes.png")
     scatter_viral(groups, "tweet_hour", "likes_count", False, True,
@@ -275,7 +276,7 @@ if args.describe_virality:
 
 # default (-d) image generation for features visualization
 if args.default_feat_visualizations:
-    variance(df)
+    variance(df, df_clean)
     describe(df)
     groups_means(df_clean)
     feature_mean_var_by_label(df_clean)
