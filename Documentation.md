@@ -55,11 +55,11 @@ Initially, we did some exploratory analysis of the data features as given by loo
 variance.
 - Initial data features description and variance
 
-<img src="images/description_data.png" alt="drawing" width="200"  style="float:left"/>
+<img src="images/description_data.png" alt="drawing" width="100%"  style="float:left"/>
 
 [comment]: <> (![df_description]&#40;images/description_data.png&#41;)
 
-<img src="images/features_variance.png" alt="drawing" width="200"  style="float:right"/>
+<img src="images/features_variance1.png" alt="drawing" width="20%"  style="float:right"/>
 
 [comment]: <> (![df_variance]&#40;images/features_variance.png&#41;)
 
@@ -67,36 +67,76 @@ Afterwards we selected some features, created some others by counting the amount
 videos and the hour of tweets creation since we consider they could be useful to predict tweets' virality. 
 Also, dropped out those features with `NaN` values.
 
+<img src="images/features_variance_cleaned.png" alt="drawing" width="20%"  style="float:right"/>
+
 [comment]: <> (![df_description]&#40;images/features_variance_cleaned.png&#41;)
 
 We also grouped the selected features by `label` (viral | non-viral) and calculated their means and variance.
 
-<img src="images/features_means_grouped_by_label.png" alt="drawing" width="100"  style="float:left"/>
+<div>
+
+  <img src="images/features_variance_by_label.png" alt="drawing" width="40%"  style="float:right"/>
+  <img src="images/features_means_by_label.png" alt="drawing" width="40%"  style="float:left"/>
+  
+  <img src="images/features_means_grouped_by_label.png" alt="drawing" width="40%"  style="float:bottom"/>
+
+</div>
 
 
-![df_description](images/features_means_by_label.png)
+[comment]: <> (![df_description]&#40;images/features_means_by_label.png&#41;)
 
-![df_description](images/features_variance_by_label.png)
-![df_description](images/features_means_grouped_by_label.png)
+[comment]: <> (![df_description]&#40;images/features_variance_by_label.png&#41;)
+
+[comment]: <> (![df_description]&#40;images/features_means_grouped_by_label.png&#41;)
 
 Finally, we did feature selection by calculating the correlations between the data features. In the
 `feature_selection_by_correlation.png` we have the `heatmap` correlation for both the clean and uncleaned 
 data which give us a better representation of the features' relationship.
-![df_description](images/feature_selection_by_correlation.png)
+
+<div>
+  <img src="images/feature_selection_by_correlation.png" alt="drawing" width="40%"  style="float:left"/>
+  <img src="images/feature_selection_by_correlation_pairplot.png" alt="drawing" width="50%"  style="float:right"/>
+  
+</div>
+
+[comment]: <> (![df_description]&#40;images/feature_selection_by_correlation.png&#41;)
 
 With the `df_clean` already grouped by label we proceed to explore tweets' virality by creating different scatterplots 
 for all features. 
-![df_description](images/retweets_likes.png)
-![df_description](images/hashtags_likes.png) 
-![df_description](images/replies_likes.png) 
-![df_description](images/replies_retweets.png)
-![df_description](images/language_likes.png) 
-![df_description](images/photos_likes.png)
+
+<div>
+  <img src="images/retweets_likes.png" alt="drawing" width="40%"  style="float:top-left"/>
+  <img src="images/hashtags_likes.png" alt="drawing" width="40%"  style="float:top-right"/>
+  <img src="images/replies_likes.png" alt="drawing" width="40%"  style="float:bottom-right"/>
+  <img src="images/replies_retweets.png" alt="drawing" width="40%"  style="float:bottom-left"/>
+</div>
+
+<div>
+  <img src="images/language_likes.png" alt="drawing" width="40%"  style="float:right"/>
+  <img src="images/photos_likes.png" alt="drawing" width="40%"  style="float:left"/>
+</div>
+
+[comment]: <> (![df_description]&#40;images/retweets_likes.png&#41;)
+
+[comment]: <> (![df_description]&#40;images/hashtags_likes.png&#41; )
+
+[comment]: <> (![df_description]&#40;images/replies_likes.png&#41; )
+
+[comment]: <> (![df_description]&#40;images/replies_retweets.png&#41;)
+
+[comment]: <> (![df_description]&#40;images/language_likes.png&#41; )
+
+[comment]: <> (![df_description]&#40;images/photos_likes.png&#41;)
 
 The `Date` and `Time` features were also relevant for our analysis of tweets virality. Thus, we explored the amount of 
 tweets by date (`year`, `month`, and `day`) and time (`hour`) of creation.
-![df_description](images/tweets_amount_per_creation_date.png)
-![df_description](images/tweets_virality_per_creation_date.png)
+
+<img src="images/tweets_amount_per_creation_date.png" alt="drawing" width="85%"  style="float:right"/>
+<img src="images/tweets_virality_per_creation_date.png" alt="drawing" width="85%"  style="float:right"/>
+
+[comment]: <> (![df_description]&#40;images/tweets_amount_per_creation_date.png&#41;)
+
+[comment]: <> (![df_description]&#40;images/tweets_virality_per_creation_date.png&#41;)
 
 ### Results and Interpretation
 
