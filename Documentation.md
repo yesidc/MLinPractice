@@ -143,14 +143,10 @@ label feature.
 The scatterplot visualizations show that:
 - Tweets are likely not viral if likes < 50.
 - Tweets are likely not viral if retweets < 47.
-- Replies do not explain virality as well, given percentile distributions are flat between true and false labeled tweets.
-  
+- Replies do not explain virality very well, given percentile distributions are flat between true and false labeled tweets.
 - Tweets (slightly) tend to be viral when fewer hashtags are used.
-  
-- Few retweets are needed to make tweets viral when they are also replied. 
-  
+- Few retweets are needed to make tweets viral when they are also replied.
 - Tweets seem to need fewer likes to go viral when language is English.
-  
 - When photos are added, tweets need more likes for them to go viral.
   
 To extract and create the `time` and `date` related features, we observed that time zone is consistent and no missing values 
