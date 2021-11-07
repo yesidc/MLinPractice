@@ -42,12 +42,12 @@ Maybe show a short example what your preprocessing does.
 
 Probably, no real interpretation possible, so feel free to leave this section out.
 
-## Feature Visualization
+## Features Visualization
 To reduce the computational complexity and focus all the resources in the most valuable and telling 
 features, we decided to do some initial look into our `tweets` data to get an idea about how different 
 features interact with each other and how they influence tweets virality. This way we could reduce the amount 
 of less useful features we have and identify the most explanatory variables thus improving the interpretability 
-of the model. Afterwards, we can select those features that are more relevant for virality, and then use them
+of the model. Afterwards, we can select those features that are more relevant, and then use them
 to train our model to predict tweets virality. 
 
 ### Design Decisions
@@ -63,15 +63,15 @@ variance.
 
 [comment]: <> (![df_variance]&#40;images/features_variance.png&#41;)
 
-Afterwards we selected some features, created some others by counting the amount of hashtags, urls, photos, 
-videos and the hour of tweets creation since we consider they could be useful to predict tweets' virality. 
-Also, dropped out those features with `NaN` values.
+Afterwards we selected some features, created some others by counting the amount of `hashtags`, `urls`, `photos`, 
+`videos` and the `hour` of tweets creation since we consider they could be useful to predict tweets' virality. 
+Also, we dropped out those features with `NaN` values.
 
 <img src="images/features_variance_cleaned.png" alt="drawing" width="20%"  style="float:right"/>
 
 [comment]: <> (![df_description]&#40;images/features_variance_cleaned.png&#41;)
 
-We also grouped the selected features by `label` (viral | non-viral) and calculated their means and variance.
+We also grouped the selected features by `label` (viral | non-viral) and calculated their means and variances.
 
 <div>
 
@@ -87,7 +87,7 @@ We also grouped the selected features by `label` (viral | non-viral) and calcula
 [comment]: <> (![df_description]&#40;images/features_variance_by_label.png&#41;)
 [comment]: <> (![df_description]&#40;images/features_means_grouped_by_label.png&#41;)
 
-Finally, we did feature selection by calculating the correlations between the data features. In the
+Finally, we reinforced our feature selection process by calculating the correlations between the data features. In the
 `feature_selection_by_correlation.png` we have the `heatmap` correlation for both the clean and uncleaned 
 data which give us a better representation of the features' relationship.
 
@@ -139,16 +139,26 @@ tweets by date (`year`, `month`, and `day`) and time (`hour`) of creation.
   is not the case.
 - Similarly, these three features show to have a high correlation among them but not necessarily with respect to the 
 label feature.
+  
 The scatterplot visualizations show that:
 - Tweets are likely not viral if likes < 50.
 - Tweets are likely not viral if retweets < 47.
 - Replies do not explain virality as well, given percentile distributions are flat between true and false labeled tweets.
-- Time zone is consistent and no missing values were found. 
-
-When looking at the `Date` and `Time` features we can see that the most telling and helpful feature to consider would be
-the `tweets_per_hour` since there seems to be a considerable change in the amount of tweets made per hour. Additionally, 
-this difference is smaller for the amount of tweets that go viral per hour. Namely, viral tweets are less between 
-roughly 11:00 and 16:00.
+  
+- Tweets (slightly) tend to be viral when fewer hashtags are used.
+  
+- Few retweets are needed to make tweets viral when they are also replied. 
+  
+- Tweets seem to need fewer likes to go viral when language is English.
+  
+- When photos are added, tweets need more likes for them to go viral.
+  
+To extract and create the `time` and `date` related features, we observed that time zone is consistent and no missing values 
+were found. When looking at the `Date` and `Time` features we can see that:
+- The most telling and helpful feature to consider seems to be the `tweets_per_hour` since there seems to be a 
+considerable change in the amount of tweets made per hour. 
+- Additionally, this difference is smaller for the amount of tweets that go viral per hour. Namely, viral tweets are 
+fewer between roughly 11:00 and 16:00.
 
 ## Feature Extraction
 
