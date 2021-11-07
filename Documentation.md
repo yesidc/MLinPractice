@@ -84,9 +84,7 @@ We also grouped the selected features by `label` (viral | non-viral) and calcula
 
 
 [comment]: <> (![df_description]&#40;images/features_means_by_label.png&#41;)
-
 [comment]: <> (![df_description]&#40;images/features_variance_by_label.png&#41;)
-
 [comment]: <> (![df_description]&#40;images/features_means_grouped_by_label.png&#41;)
 
 Finally, we did feature selection by calculating the correlations between the data features. In the
@@ -117,32 +115,30 @@ for all features.
 </div>
 
 [comment]: <> (![df_description]&#40;images/retweets_likes.png&#41;)
-
 [comment]: <> (![df_description]&#40;images/hashtags_likes.png&#41; )
-
 [comment]: <> (![df_description]&#40;images/replies_likes.png&#41; )
-
 [comment]: <> (![df_description]&#40;images/replies_retweets.png&#41;)
-
 [comment]: <> (![df_description]&#40;images/language_likes.png&#41; )
-
 [comment]: <> (![df_description]&#40;images/photos_likes.png&#41;)
 
 The `Date` and `Time` features were also relevant for our analysis of tweets virality. Thus, we explored the amount of 
 tweets by date (`year`, `month`, and `day`) and time (`hour`) of creation.
-
+<div>
 <img src="images/tweets_amount_per_creation_date.png" alt="drawing" width="85%"  style="float:right"/>
 <img src="images/tweets_virality_per_creation_date.png" alt="drawing" width="85%"  style="float:right"/>
+</div>
 
 [comment]: <> (![df_description]&#40;images/tweets_amount_per_creation_date.png&#41;)
-
 [comment]: <> (![df_description]&#40;images/tweets_virality_per_creation_date.png&#41;)
+
 
 ### Results and Interpretation
 
-
-The means and variances are pretty much alike and higher for features such as `likes_count`, `replies_count` and
-`retweets_count` when compared to the other features. Similarly, these three features show to have a high correlation. 
+- The means and variances are pretty much alike and higher for features such as `likes_count`, `replies_count` and
+`retweets_count` when compared to the other features. However, with respect to the labels feature of interest, it 
+  is not the case.
+- Similarly, these three features show to have a high correlation among them but not necessarily with respect to the 
+label feature.
 The scatterplot visualizations show that:
 - Tweets are likely not viral if likes < 50.
 - Tweets are likely not viral if retweets < 47.
