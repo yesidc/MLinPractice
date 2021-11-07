@@ -19,3 +19,4 @@ COLUMN_URLS = "urls"
 COLUMN_LABEL = "label"
 COLUMN_PUNCTUATION = "tweet_no_punctuation"
 COLUMN_HASHTAG ='hashtags'
+COLUMN_TIME="time"

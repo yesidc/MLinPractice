@@ -20,7 +20,8 @@ from script.feature_extraction.contain_photo import contain_pthotos
 from script.feature_extraction.contain_website import contain_websites
 from script.feature_extraction.tfidf_features import tfidf_vectors
 from script.feature_extraction.feature_hashtag import extract_num_hashtags
-from script.util import COLUMN_TWEET, COLUMN_LABEL,COLUMN_DATE, COLUMN_PHOTOS,COLUMN_URLS,COLUMN_PUNCTUATION,COLUMN_HASHTAG
+from script.feature_extraction.feature_hour import extract_hour
+from script.util import COLUMN_TWEET, COLUMN_LABEL,COLUMN_DATE, COLUMN_PHOTOS,COLUMN_URLS,COLUMN_PUNCTUATION,COLUMN_HASHTAG,COLUMN_TIME
 
 
 # setting up CLI
@@ -35,7 +36,7 @@ parser.add_argument("-p", "--contain_photo", action= "store_true", help= "return
 parser.add_argument("-w", "--contain_website", action= "store_true", help= "returns 1 if the post contains a website; 0 otherwise")
 parser.add_argument("-t", "--tfidf_vector", action= "store_true", help= "Extracts tfidf of each tweet")
 parser.add_argument("-n", "--num_hashtags", action= "store_true", help= "Retrieves the number of hashtags per tweet")
-
+parser.add_argument("-d", "--time_hour", action= "store_true", help= "Retrieves the hour the tweet was posted")
 args = parser.parse_args()
 
 # load data
@@ -43,7 +44,7 @@ df = pd.read_csv(args.input_file, quoting = csv.QUOTE_NONNUMERIC, lineterminator
 
 #TODO change readme reference to code --> change it to script
 #TODO delete this line of code
-df = df.iloc[0:10]
+df = df.iloc[40:70]
 
 
 if args.import_file is not None:
@@ -73,6 +74,8 @@ else:    # need to create FeatureCollector manually
 
     if args.num_hashtags:
         features.append(extract_num_hashtags(COLUMN_HASHTAG))
+    if args.time_hour:
+        features.append(extract_hour(COLUMN_TIME))
 
 
     # create overall FeatureCollector

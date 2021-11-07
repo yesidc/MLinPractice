@@ -6,6 +6,8 @@ Created on Friday Nov 5  2021
 
 import pandas as pd
 from script.feature_extraction.feature_extractor import FeatureExtractor
+import numpy as np
+import ast
 
 class extract_num_hashtags (FeatureExtractor):
 
@@ -15,9 +17,6 @@ class extract_num_hashtags (FeatureExtractor):
 
     def _get_values (self,inputs):
         """Given the hashtags column, extracts the number hashtags per tweet"""
-
-        result= inputs[0].map(lambda x: len(x[1:-1].split(', ')))
-        result= result.values
-        #result = pd.DatetimeIndex(inputs[0]).month.values
-        result = result.reshape(-1, 1)
+        result = inputs[0].values
+        result = np.array([len(ast.literal_eval(x)) for x in result]).reshape(-1, 1)
         return result

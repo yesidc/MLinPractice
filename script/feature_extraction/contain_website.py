@@ -7,6 +7,7 @@ Created on Thursday Oct 25  2021
 import pandas as pd
 import numpy as np
 from script.feature_extraction.feature_extractor import FeatureExtractor
+import ast
 
 class contain_websites (FeatureExtractor):
 
@@ -15,7 +16,7 @@ class contain_websites (FeatureExtractor):
 
 
     def _get_values (self,inputs):
-        """Given the photos column, returns 1 if a photo was included in the post, 0 otherwise"""
+        """Given the urls column, returns how many websites the tweet contains"""
         result = inputs[0].values
-        result = np.array([1 if len(x)>2 else 0 for x in result]).reshape(-1,1)
+        result = np.array([len(ast.literal_eval(x)) for x in result]).reshape(-1, 1)
         return result
