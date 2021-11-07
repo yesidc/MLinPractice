@@ -42,6 +42,120 @@ Maybe show a short example what your preprocessing does.
 
 Probably, no real interpretation possible, so feel free to leave this section out.
 
+## Features Visualization
+To reduce the computational complexity and focus all the resources in the most valuable and telling 
+features, we decided to do some initial look into our `tweets` data to get an idea about how different 
+features interact with each other and how they influence tweets virality. This way we could reduce the amount 
+of less useful features we have and identify the most explanatory variables thus improving the interpretability 
+of the model. Afterwards, we can select those features that are more relevant, and then use them
+to train our model to predict tweets virality. 
+
+### Design Decisions
+Initially, we did some exploratory analysis of the data features as given by looking at the data description and 
+variance.
+- Initial data features description and variance
+
+<img src="images/description_data.png" alt="drawing" width="100%"  style="float:left"/>
+
+[comment]: <> (![df_description]&#40;images/description_data.png&#41;)
+
+<img src="images/features_variance1.png" alt="drawing" width="20%"  style="float:right"/>
+
+[comment]: <> (![df_variance]&#40;images/features_variance.png&#41;)
+
+Afterwards we selected some features, created some others by counting the amount of `hashtags`, `urls`, `photos`, 
+`videos` and the `hour` of tweets creation since we consider they could be useful to predict tweets' virality. 
+Also, we dropped out those features with `NaN` values.
+
+<img src="images/features_variance_cleaned.png" alt="drawing" width="20%"  style="float:right"/>
+
+[comment]: <> (![df_description]&#40;images/features_variance_cleaned.png&#41;)
+
+We also grouped the selected features by `label` (viral | non-viral) and calculated their means and variances.
+
+<div>
+
+  <img src="images/features_variance_by_label.png" alt="drawing" width="40%"  style="float:right"/>
+  <img src="images/features_means_by_label.png" alt="drawing" width="40%"  style="float:left"/>
+  
+  <img src="images/features_means_grouped_by_label.png" alt="drawing" width="40%"  style="float:bottom"/>
+
+</div>
+
+
+[comment]: <> (![df_description]&#40;images/features_means_by_label.png&#41;)
+[comment]: <> (![df_description]&#40;images/features_variance_by_label.png&#41;)
+[comment]: <> (![df_description]&#40;images/features_means_grouped_by_label.png&#41;)
+
+Finally, we reinforced our feature selection process by calculating the correlations between the data features. In the
+`feature_selection_by_correlation.png` we have the `heatmap` correlation for both the clean and uncleaned 
+data which give us a better representation of the features' relationship.
+
+<div>
+  <img src="images/feature_selection_by_correlation.png" alt="drawing" width="40%"  style="float:left"/>
+  <img src="images/feature_selection_by_correlation_pairplot.png" alt="drawing" width="50%"  style="float:right"/>
+  
+</div>
+
+[comment]: <> (![df_description]&#40;images/feature_selection_by_correlation.png&#41;)
+
+With the `df_clean` already grouped by label we proceed to explore tweets' virality by creating different scatterplots 
+for all features. 
+
+<div>
+  <img src="images/retweets_likes.png" alt="drawing" width="40%"  style="float:top-left"/>
+  <img src="images/hashtags_likes.png" alt="drawing" width="40%"  style="float:top-right"/>
+  <img src="images/replies_likes.png" alt="drawing" width="40%"  style="float:bottom-right"/>
+  <img src="images/replies_retweets.png" alt="drawing" width="40%"  style="float:bottom-left"/>
+</div>
+
+<div>
+  <img src="images/language_likes.png" alt="drawing" width="40%"  style="float:right"/>
+  <img src="images/photos_likes.png" alt="drawing" width="40%"  style="float:left"/>
+</div>
+
+[comment]: <> (![df_description]&#40;images/retweets_likes.png&#41;)
+[comment]: <> (![df_description]&#40;images/hashtags_likes.png&#41; )
+[comment]: <> (![df_description]&#40;images/replies_likes.png&#41; )
+[comment]: <> (![df_description]&#40;images/replies_retweets.png&#41;)
+[comment]: <> (![df_description]&#40;images/language_likes.png&#41; )
+[comment]: <> (![df_description]&#40;images/photos_likes.png&#41;)
+
+The `Date` and `Time` features were also relevant for our analysis of tweets virality. Thus, we explored the amount of 
+tweets by date (`year`, `month`, and `day`) and time (`hour`) of creation.
+<div>
+<img src="images/tweets_amount_per_creation_date.png" alt="drawing" width="85%"  style="float:right"/>
+<img src="images/tweets_virality_per_creation_date.png" alt="drawing" width="85%"  style="float:right"/>
+</div>
+
+[comment]: <> (![df_description]&#40;images/tweets_amount_per_creation_date.png&#41;)
+[comment]: <> (![df_description]&#40;images/tweets_virality_per_creation_date.png&#41;)
+
+
+### Results and Interpretation
+
+- The means and variances are pretty much alike and higher for features such as `likes_count`, `replies_count` and
+`retweets_count` when compared to the other features. However, with respect to the labels feature of interest, it 
+  is not the case.
+- Similarly, these three features show to have a high correlation among them but not necessarily with respect to the 
+label feature.
+  
+The scatterplot visualizations show that:
+- Tweets are likely not viral if likes < 50.
+- Tweets are likely not viral if retweets < 47.
+- Replies do not explain virality very well, given percentile distributions are flat between true and false labeled tweets.
+- Tweets (slightly) tend to be viral when fewer hashtags are used.
+- Few retweets are needed to make tweets viral when they are also replied.
+- Tweets seem to need fewer likes to go viral when language is English.
+- When photos are added, tweets need more likes for them to go viral.
+  
+To extract and create the `time` and `date` related features, we observed that time zone is consistent and no missing values 
+were found. When looking at the `Date` and `Time` features we can see that:
+- The most telling and helpful feature to consider seems to be the `tweets_per_hour` since there seems to be a 
+considerable change in the amount of tweets made per hour. 
+- Additionally, this difference is smaller for the amount of tweets that go viral per hour. Namely, viral tweets are 
+fewer between roughly 11:00 and 16:00.
+
 ## Feature Extraction
 
 Again, either structure among decision-result-interpretation or based on feature,
