@@ -66,7 +66,10 @@ Also, dropped out those features with `NaN` values.
 [comment]: <> (![df_description]&#40;images/features_variance_cleaned.png&#41;)
 
 We also grouped the selected features by `label` (viral | non-viral) and calculated their means and variance.
+<img src="images/features_means_grouped_by_label.png" alt="drawing" width="100"/>
+
 ![df_description](images/features_means_by_label.png)
+
 ![df_description](images/features_variance_by_label.png)
 ![df_description](images/features_means_grouped_by_label.png)
 
@@ -98,6 +101,7 @@ The scatterplot visualizations show that:
 - Tweets are likely not viral if likes < 50.
 - Tweets are likely not viral if retweets < 47.
 - Replies do not explain virality as well, given percentile distributions are flat between true and false labeled tweets.
+- Time zone is consistent and no missing values were found. 
 
 When looking at the `Date` and `Time` features we can see that the most telling and helpful feature to consider would be
 the `tweets_per_hour` since there seems to be a considerable change in the amount of tweets made per hour. Additionally, 
