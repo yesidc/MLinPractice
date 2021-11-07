@@ -77,21 +77,32 @@ data which give us a better representation of the features' relationship.
 
 With the `df_clean` already grouped by label we proceed to explore tweets' virality by creating different scatterplots 
 for all features. 
-![df_description](images/hashtags_like.png) ![df_description](images/language_like.png) 
-![df_description](images/photos_like.png) ![df_description](images/replies_like.png) ![df_description](images/replies_retweets.png)
 ![df_description](images/retweets_likes.png)
+![df_description](images/hashtags_likes.png) 
+![df_description](images/replies_likes.png) 
+![df_description](images/replies_retweets.png)
+![df_description](images/language_likes.png) 
+![df_description](images/photos_likes.png)
 
 The `Date` and `Time` features were also relevant for our analysis of tweets virality. Thus, we explored the amount of 
 tweets by date (`year`, `month`, and `day`) and time (`hour`) of creation.
 ![df_description](images/tweets_amount_per_creation_date.png)
 ![df_description](images/tweets_virality_per_creation_date.png)
 
-### Results
+### Results and Interpretation
+
 
 The means and variances are pretty much alike and higher for features such as `likes_count`, `replies_count` and
 `retweets_count` when compared to the other features. Similarly, these three features show to have a high correlation. 
+The scatterplot visualizations show that:
+- Tweets are likely not viral if likes < 50.
+- Tweets are likely not viral if retweets < 47.
+- Replies do not explain virality as well, given percentile distributions are flat between true and false labeled tweets.
 
-### Interpretation
+When looking at the `Date` and `Time` features we can see that the most telling and helpful feature to consider would be
+the `tweets_per_hour` since there seems to be a considerable change in the amount of tweets made per hour. Additionally, 
+this difference is smaller for the amount of tweets that go viral per hour. Namely, viral tweets are less between 
+roughly 11:00 and 16:00.
 
 ## Feature Extraction
 
