@@ -1,3 +1,9 @@
+"""
+Created on Wed Oct 24  2021
+
+@author: yesidc
+"""
+
 import pandas as pd
 from script.feature_extraction.feature_extractor import FeatureExtractor
 

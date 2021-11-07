@@ -1,5 +1,14 @@
+"""
+Created on Friday Oct 29  2021
+
+@author: yesidc
+"""
+
+
 import numpy as np
 from script.feature_extraction.feature_extractor import FeatureExtractor
+
+
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 class tfidf_vectors (FeatureExtractor):
