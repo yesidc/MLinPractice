@@ -158,8 +158,8 @@ fewer between roughly 11:00 and 16:00.
 
 ## Feature Extraction
 
-Most of the feature selection was done based on the results obtained from the visualization, as we explained in the previous section.
-Selected features:
+Most of the feature selection process was done based on the results obtained from the visualization, as we explained in the previous section.
+###Selected features:
 - `month_tweet`, and `feature_hour` are from the Date and Time columns.
 - `contain_website`, `contain_photo` and `feature_hashtag`,  consist of the amount of websites, photos and hashtags a tweet contained.
 - `tfidf` is a vectorial representation of the tweet.
