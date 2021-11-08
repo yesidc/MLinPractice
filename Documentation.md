@@ -158,30 +158,17 @@ fewer between roughly 11:00 and 16:00.
 
 ## Feature Extraction
 
-Again, either structure among decision-result-interpretation or based on feature,
-up to you.
+Most of the feature selection was done based on the results obtained from the visualization, as we explained in the previous section.
+Selected features:
+- `month_tweet`, and `feature_hour` are from the Date and Time columns.
+- `contain_website`, `contain_photo` and `feature_hashtag`,  consist of the amount of websites, photos and hashtags a tweet contained.
+- `tfidf` is a vectorial representation of the tweet.
+- `character_length` contains the length of the tweet.
 
-### Design Decisions
-
-Which features did you implement? What's their motivation and how are they computed?
-
-### Results
-
-Can you say something about how the feature values are distributed? Maybe show some plots?
-
-### Interpretation
-
-Can we already guess which features may be more useful than others?
 
 ## Dimensionality Reduction
 
-We applied dimensionality reduction to those features of the data we had previously selected based on the visualizations.
-Some features created include:
-
-- `month_tweet`, and `hour_tweet` are from the Date and Time columns.
-- `contain_website`, `contain_photo` consists of the amount of websites and photos a tweet contained.
-- `tfidf` is a vectorial representation of the tweet.
-- `character_length` contains the length of the tweet.
+We applied dimensionality reduction to the features decribed above. 
 
 We wanted to reduce the dimensionality of the data to analyze the behaviour and usefulness of 
 specific features during classification. 
