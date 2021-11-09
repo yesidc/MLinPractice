@@ -143,8 +143,12 @@ Moreover, the script support importing and exporting fitted dimensionality reduc
 Finally, if the flag `--verbose` is set, the script outputs some additional information about the dimensionality reduction process.
 
 ### PCA
-To use this dimensionality reduction method follow execute the following:
+To use this dimensionality reduction method execute the following:
 - `-p` or `--pca`: Executes Principal Component Analysis given a number of components. 
+- `-f` or `--export_plot`: Path to save PCA plots.
+
+### Grid
+To perform dimensionality reduction on the grid use `qsub dimensionality_reduction.sge`
 
 ## Classification
 
