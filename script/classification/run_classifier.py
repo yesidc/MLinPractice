@@ -11,6 +11,7 @@ Created on Wed Sep 29 14:23:48 2021
 import argparse, pickle
 from sklearn.dummy import DummyClassifier
 from sklearn.metrics import accuracy_score, cohen_kappa_score
+from sklearn.metrics import accuracy_score, log_loss, roc_auc_score
 from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.pipeline import make_pipeline
@@ -26,6 +27,11 @@ parser.add_argument("-i", "--import_file", help="import a trained classifier fro
 parser.add_argument("-m", "--majority", action="store_true", help="majority class classifier")
 parser.add_argument("-f", "--frequency", action="store_true", help="label frequency classifier")
 parser.add_argument("--knn", type=int, help="k nearest neighbor classifier with the specified value of k", default=None)
+
+# evaluation 
+parser.add_argument("-l", "--logLoss", action = "store_true", help = "log loss class classifier")
+parser.add_argument("-r", "--roc_auc", action = "store_true", help = "roc auc score class classifier")
+
 
 parser.add_argument("-b", "--m_naive_Bayes", action="store_true", help="Multinomial Naive Bayes")
 
@@ -97,6 +103,11 @@ if args.accuracy:
     evaluation_metrics.append(("accuracy", accuracy_score))
 if args.kappa:
     evaluation_metrics.append(("Cohen_kappa", cohen_kappa_score))
+    ## LOG LOSS AND ROC_AUC IMPLEMEMTED HERE ##
+if args.logLoss:
+    evaluation_metrics.append(("logLoss", log_loss))
+if args.roc_auc:
+    evaluation_metrics.append(("roc_auc", roc_auc_score))
 
 # compute and print them
 for metric_name, metric in evaluation_metrics:
