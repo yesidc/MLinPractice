@@ -10,15 +10,22 @@ Created on Wed Sep 29 13:33:37 2021
 
 import argparse, pickle
 from sklearn.feature_selection import SelectKBest, mutual_info_classif
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
+import matplotlib.pyplot as plt
+from script.util import plot_pca_biplot,scatter_plot_pca
+import numpy as np
 
 
 # setting up CLI
 parser = argparse.ArgumentParser(description = "Dimensionality reduction")
 parser.add_argument("input_file", help = "path to the input pickle file")
 parser.add_argument("output_file", help = "path to the output pickle file")
+parser.add_argument("-f", "--export_plot", help= "Path to save pca plots", default=None)
 parser.add_argument("-e", "--export_file", help = "create a pipeline and export to the given location", default = None)
 parser.add_argument("-i", "--import_file", help = "import an existing pipeline from the given location", default = None)
 parser.add_argument("-m", "--mutual_information", type = int, help = "select K best features with Mutual Information", default = None)
+parser.add_argument("-p", "--pca", type = int, help = "Applies Principal component Analysis. Need to specify number of components", default= None)
 parser.add_argument("--verbose", action = "store_true", help = "print information about feature selection process")
 args = parser.parse_args()
 
@@ -56,10 +63,22 @@ else: # need to set things up manually
             print("    {0}".format(feature_names))
             print("    " + str(dim_red.scores_))
             print("    " + str(get_feature_names(dim_red, feature_names)))
-    pass
+        # apply the dimensionality reduction to the given features
+        reduced_features = dim_red.transform(features)
 
-# apply the dimensionality reduction to the given features
-reduced_features = dim_red.transform(features)
+    if args.pca is not None:
+        # Standardize features
+        features = StandardScaler().fit_transform(features)
+        #Implement PCA
+        dim_red = PCA(n_components=args.pca) #PCA model
+        reduced_features = dim_red.fit_transform(features)
+        if args.pca ==2:
+            #to name images depending on whether it is the training, validion or test data set.
+            graph_name =args.input_file.split("/")[-1].split('.')[0]
+            scatter_plot_pca(reduced_features,args.export_plot,graph_name)
+            plt.clf()
+            #Plot pca biplot
+            plot_pca_biplot(args.export_plot,graph_name,reduced_features[:,0:2], np.transpose(dim_red.components_[0:2, :]), list(feature_names))
 
 # store the results
 output_data = {"features": reduced_features, 
