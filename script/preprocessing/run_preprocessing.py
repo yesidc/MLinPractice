@@ -31,7 +31,7 @@ parser.add_argument("--tokenize_input", help = "input column to tokenize", defau
 args = parser.parse_args()
 
 # load data Kept it 30 for shorter machine load
-df = pd.read_csv(args.input_file, quoting = csv.QUOTE_NONNUMERIC, lineterminator = "\n", nrows= 50)
+df = pd.read_csv(args.input_file, quoting = csv.QUOTE_NONNUMERIC, lineterminator = "\n")
 
 
 
