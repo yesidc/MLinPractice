@@ -2,7 +2,7 @@
 
 #!/bin/bash
 #$ -N Dimensionality_r_task
-#$ -l mem=2G
+#$ -l mem=6G
 #$ -cwd
 #$ -pe default 2
 #$ -o $HOME

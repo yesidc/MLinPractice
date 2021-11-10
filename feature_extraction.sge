@@ -2,7 +2,7 @@
 
 #!/bin/bash
 #$ -N feature_extraction_task
-#$ -l mem=2G
+#$ -l mem=4G
 #$ -cwd
 #$ -pe default 2
 #$ -o $HOME
@@ -19,18 +19,17 @@ conda activate MLinPractice
 
 echo "  training set"
 
-python -m script.feature_extraction.extract_features data/preprocessing/split/training.csv data/feature_extraction/training.pickle -e data/feature_extraction/pipeline.pickle --char_length $*
-
+python -m script.feature_extraction.extract_features data/preprocessing/split/training.csv data/feature_extraction/training.pickle -e data/feature_extraction/pipeline.pickle --contain_website --month_tweet --num_hashtags --time_hour --contain_photo --tfidf_vector $*
 
 # run feature extraction on validation set and test set (with pre-fit extractors)
 
 echo "  validation set"
 
-python -m script.feature_extraction.extract_features data/preprocessing/split/validation.csv data/feature_extraction/validation.pickle -i data/feature_extraction/pipeline.pickle $*
+python -m script.feature_extraction.extract_features data/preprocessing/split/validation.csv data/feature_extraction/validation.pickle -i data/feature_extraction/pipeline.pickle --contain_website --month_tweet --num_hashtags --time_hour --contain_photo --tfidf_vector $*
 
 echo "  test set"
 
-python -m script.feature_extraction.extract_features data/preprocessing/split/test.csv data/feature_extraction/test.pickle -i data/feature_extraction/pipeline.pickle $*
+python -m script.feature_extraction.extract_features data/preprocessing/split/test.csv data/feature_extraction/test.pickle -i data/feature_extraction/pipeline.pickle --contain_website --month_tweet --num_hashtags --time_hour --contain_photo --tfidf_vector $*
 
 
 
