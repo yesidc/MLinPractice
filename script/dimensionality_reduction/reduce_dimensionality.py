@@ -78,7 +78,7 @@ else: # need to set things up manually
             scatter_plot_pca(reduced_features,args.export_plot,graph_name)
             plt.clf()
             #Plot pca biplot
-            plot_pca_biplot(args.export_plot,graph_name,reduced_features[:,0:2], np.transpose(dim_red.components_[0:2, :]), list(feature_names))
+            #plot_pca_biplot(args.export_plot,graph_name,reduced_features[:,0:2], np.transpose(dim_red.components_[0:2, :]), list(feature_names))
 
 # store the results
 output_data = {"features": reduced_features, 
