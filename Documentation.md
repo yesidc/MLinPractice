@@ -199,6 +199,8 @@ candidate values) did you look at? What were your reasons for this?
 #### Multinomial Naive Bayes:
 We implemented Multinomial Naive Bayes (which implements the Naive Bayes algorithm) since, according to <a href="https://scikit-learn.org/stable/modules/naive_bayes.html">sklearn</a> documentation, besides it being a classic naive Bayes variant used in text classification; it also performes well with tf-idf vectors (which is one of the features we extracted)
 
+### Training
+We did the training process on the grid. At first we tried to extract all the features described above, but it was not possible due to fact that the memory was exceeded. We resquested up to 64 GB of memory, but this was not enough. Given this memory restriction, we extracted all features but tfidf, and proceded to train the model. 
 ### Results
 
 The big finale begins: What are the evaluation results you obtained with your
