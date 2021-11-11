@@ -13,6 +13,81 @@ In the following documentation we provide specifics about the processes involved
 ### Design Decisions
 
 Which evaluation metrics did you use and why? 
+
+For the evaluation, three different Evaluation Matrices have been implemented. The implemented Evaluation Matrices are below. 
+
+	- Accuracy
+
+	- Log Loss
+
+	- ROC and AUC 
+
+Accuracy: 
+
+Accuracy Matrices tell us the proportion of the true results among the total number of cases examined. This is one of the easies 
+
+matrices to understand and easily fits for multiclass classification problems as well as binary classifications.
+
+As we know from our dataset of Tweets, it is indeed a well-balanced dataset with no skewed and no class imbalance, it makes sense to use accuracy to 
+
+evaluate our model.
+
+	Accuracy = (TP+TN)/(TP+FP+FN+TN)
+
+
+
+
+Log Loss: 
+
+Logarithmic Loss or Lof Loss classification works by eliminating the false classifications and works well with multiclass classification.
+
+Log Loss assigns a probability to each class for all the samples. 
+
+		img formula
+
+y_ij, indicates whether sample i belongs to class j or not
+
+p_ij, indicates the probability of sample i belonging to class j
+
+log loss has no upper bound, meaning can be from 0 to inf. log loss of zero means higher accuracy
+
+where bigger value means lower accuracy.
+
+
+
+ROC and AUC:
+
+ROC(receiver operating characteristic ) curve is a graph showing the performance of a classification model at all classification thresholds. graph plots
+
+True Positive on the y axis and False Positive on the x-axis. 
+
+True Positive Rate/Sensitivity: TPR = TP/(TP+FN)
+
+False Positive Rate/Specificity: FPR = FP/(FP+TN)
+
+The ROC curve shows the trade-off between sensitivity (or TPR) and specificity (1 – FPR). In simple terms, it is the curve of probability.
+
+Classifiers that give curves closer to the top-left corner indicate better performance. As a baseline,
+
+a random classifier is expected to give points lying along the diagonal (FPR = TPR). The closer the curve comes
+
+to the 45-degree 
+
+diagonal of the ROC space, the less accurate the test. ROC does not depend on the classification 
+
+distribution. 
+
+AUC(Area under the ROC curve) is useful for comparing different classifiers and summarizing the performance
+
+of each classifier into a single measure. The most common approach is to compute the area under the ROC curve. 
+
+It is equivalent to the two-sample Wilcoxon rank-sum statistics. Higher the AUC, the better the model is at predicting 0 classes as 0 and 1 classes as 1.
+
+Depending upon the threshold, we can minimize or maximize them. When AUC is 0.7,
+
+It means there is a 70% chance that the model will be able to distinguish between positive class and negative class.
+
+
 Which baselines did you use and why?
 
 ### Results
@@ -23,25 +98,87 @@ How do the baselines perform with respect to the evaluation metrics?
 
 Is there anything we can learn from these results?
 
-## Preprocessing
 
-I'm following the "Design Decisions - Results - Interpretation" structure here,
-but you can also just use one subheading per preprocessing step to organize
-things (depending on what you do, that may be better structured).
 
-### Design Decisions
 
-Which kind of preprocessing steps did you implement? Why are they necessary
-and/or useful down the road?
 
-### Results
+Preprocessing of the data: 
 
-Maybe show a short example what your preprocessing does.
+steps: 
 
-### Interpretation
+ - fill missing data
 
-Probably, no real interpretation possible, so feel free to leave this section out.
+ - get rid of none fillable data
 
+ - get rid of unuseful columns
+
+ - tokenization
+
+ - url removal
+
+ - lemmatization
+
+ - stop word removal
+
+ - punctuation removal
+
+Fill in missing data: 
+
+	Dealing with missing data is very important in any part of data preprocessing. For this project, forward fill and backward fill has been used to 
+
+	make sure that, there are no NAN values and the other part of the data can be used for other features instead of getting rid of the whole data row. 
+
+Delete Columns: 
+
+	Some data are not possible to fill because of the nature of the data and non-usability. Such data columns have been removed. 
+
+	This are the columns have been removed:
+
+	['user_rt','retweet_id','retweet_date','translate', 'trans_src', "near", "geo", "source","user_rt_id"]
+
+Tokenization: 
+
+	In order to get our computer to understand any text, we need to break that word down in a way that our machine can understand. That’s where the concept of tokenization 
+
+	Natural Language Processing (NLP) comes in. Simply put, we can’t work with text data if we don’t perform tokenization. It is the building block of Natural Language Processing.
+
+	For performing tokenization, first, the data has been converted into sentence tokens. Then, from those sentence tokens, data has been processed into word tokens for further preprocessing. 
+
+Url removal: 
+
+	For natural language preprocessing, the URLs don't represent anything except noise to the data. For getting rid of the extra noises, the URLs from the data has been removed for further preprocessing
+
+	Regular expressions are one of the most essential parts of the NLP. URLs are removed using regular expressions for making the process much faster. 
+
+Lemmatization:
+
+	For grammatical reasons, documents are going to use different forms of a word, such as organize, organize, and organize. Additionally, there are families of derivationally related words with similar meanings, 
+
+	such as democracy, democratic, and democratization. In many situations, it seems as if it would be useful to search for one of these words to return documents containing another word in the set. 
+
+	Lemmatization usually refers to doing things properly with the use of a vocabulary and morphological analysis of words, normally aiming to remove inflectional endings only and to return the base or dictionary form of a word, which is known as the lemma.
+
+	Stemming usually refers to a crude heuristic process that chops off the ends of words in the hope of achieving this goal correctly most of the time, and often includes the removal of derivational affixes.
+
+	Lemmatization has been used instead of stemming to keep the data meaningful and closer to its lexical meaning. 
+
+Stop Word Removal: 
+
+	Stop word removal is one of the most commonly used preprocessing steps across different NLP applications. The idea is simply removing the words that occur commonly across all the documents in the corpus.
+
+	Typically, articles and pronouns are generally classified as stop words. These words have no significance in some of the NLP tasks like information retrieval and classification, which means these words are not very discriminative.
+
+	On the contrary, in some NLP applications stop word removal will have very little impact. Most of the time, the stop word list for the given language is a well-hand-curated list of words that occur most commonly across corpora.
+
+	From the Nltk corpus, the English language library of stop words has been used to get rid of the most common words that have none or ignorable impacts. 
+
+punctuation removal: 
+
+	Punctuation words make the data uninterpretable when it's being tokenized and lemmatized. These steps have no meaning and means to be removed to keep the data clean, readable, and computationally efficient.
+
+	
+
+	Img********** has to be included. 
 ## Features Visualization
 To reduce the computational complexity and focus all the resources in the most valuable and telling 
 features, we decided to do some initial look into our `tweets` data to get an idea about how different 

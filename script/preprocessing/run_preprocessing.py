@@ -31,7 +31,19 @@ parser.add_argument("--tokenize_input", help = "input column to tokenize", defau
 args = parser.parse_args()
 
 # load data Kept it 30 for shorter machine load
+
 df = pd.read_csv(args.input_file, quoting = csv.QUOTE_NONNUMERIC, lineterminator = "\n")
+# get rid of the missing data and dropooing unnecessary columns
+df.fillna(method = 'ffill',inplace = True)
+df.fillna(method = 'bfill',inplace = True)
+df.drop(['user_rt','retweet_id','retweet_date','translate', 
+         'trans_src', "near", "geo", "source","user_rt_id"], inplace = True, axis =1)
+
+
+
+print("null values found in dataset True/Flase ? " , df.isnull().values.any() )
+
+
 
 
 
