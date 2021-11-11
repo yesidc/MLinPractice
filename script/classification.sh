@@ -4,8 +4,9 @@
 mkdir -p data/classification/
 
 # run feature extraction on training set (may need to fit extractors)
+# classifiars use majority or frequency --frequency  or --majority"
 echo "  training set"
-python -m script.classification.run_classifier data/dimensionality_reduction/training.pickle -e data/classification/classifier.pickle --majority --accuracy --kappa --logLoss --roc_auc
+python -m script.classification.run_classifier data/dimensionality_reduction/training.pickle -e data/classification/classifier.pickle --frequency --accuracy --kappa --logLoss --roc_auc
 
 # run feature extraction on validation set (with pre-fit extractors)
 echo "  validation set"
