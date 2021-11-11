@@ -55,7 +55,7 @@ else:    # need to create FeatureCollector manually
         # character length of original tweet (without any changes)
         features.append(CharacterLength(COLUMN_TWEET))
     if args.month_tweet:
-        #month tweet was posted
+        #Month tweet was posted
         features.append(extract_month(COLUMN_DATE))
     if args.contain_photo:
         #whether photo was included in the tweet
@@ -65,11 +65,14 @@ else:    # need to create FeatureCollector manually
         #whether a website was included in the tweet.
         features.append(contain_websites(COLUMN_URLS))
     if args.tfidf_vector:
+        #Extract tfidf vector
         features.append(tfidf_vectors(COLUMN_PUNCTUATION))
 
     if args.num_hashtags:
+        #Extact number of hashtags
         features.append(extract_num_hashtags(COLUMN_HASHTAG))
     if args.time_hour:
+        #Extract the hour the tweet was posted
         features.append(extract_hour(COLUMN_TIME))
 
 

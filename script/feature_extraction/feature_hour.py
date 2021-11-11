@@ -8,8 +8,6 @@ Created on Sunday Nov 7  2021
 import pandas as pd
 from script.feature_extraction.feature_extractor import FeatureExtractor
 
-
-
 class extract_hour (FeatureExtractor):
 
     def __init__(self,input_column):

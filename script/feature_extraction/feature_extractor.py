@@ -61,7 +61,7 @@ class FeatureExtractor(BaseEstimator,TransformerMixin):
 
         inputs = []
         # collect all input columns from df
-        for input_col in self._input_columns: #TODO this is the input column of the feature
+        for input_col in self._input_columns:
             inputs.append(df[input_col])
             
         return self._get_values(inputs)

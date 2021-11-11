@@ -87,8 +87,6 @@ else:  # manually set up a classifier
         # Multinomial Bayes classifier
         print("    Multinomial Bayes classifier")
         log_param("classifier", "Bayes")
-        # TODO tune paramters
-        # params = {"classifier": "frequency"}
         classifier = naive_bayes.MultinomialNB()
 
     classifier.fit(data["features"], data["labels"].ravel())
