@@ -28,7 +28,8 @@ Accuracy Matrices tell us the proportion of the true results among the total num
 
 matrices to understand and easily fits for multiclass classification problems as well as binary classifications.
 
-As we know from our dataset of Tweets, it is indeed a well-balanced dataset with no skewed and no class imbalance, it makes sense to use accuracy to 
+As we know from our dataset of Tweets, it is indeed a well-balanced dataset with no skewed and no class imbalance, 
+it makes sense to use accuracy to 
 
 evaluate our model.
 
@@ -37,7 +38,7 @@ evaluate our model.
 
 
 
-Log Loss: 
+#### Log Loss: 
 
 Logarithmic Loss or Lof Loss classification works by eliminating the false classifications and works well with multiclass classification.
 
@@ -55,9 +56,11 @@ where bigger value means lower accuracy.
 
 
 
-ROC and AUC:
 
-ROC(receiver operating characteristic ) curve is a graph showing the performance of a classification model at all classification thresholds. graph plots
+#### ROC and AUC:
+
+ROC(receiver operating characteristic ) curve is a graph showing the performance of a classification model at all classification 
+thresholds. graph plots
 
 True Positive on the y axis and False Positive on the x-axis. 
 
@@ -81,7 +84,8 @@ AUC(Area under the ROC curve) is useful for comparing different classifiers and 
 
 of each classifier into a single measure. The most common approach is to compute the area under the ROC curve. 
 
-It is equivalent to the two-sample Wilcoxon rank-sum statistics. Higher the AUC, the better the model is at predicting 0 classes as 0 and 1 classes as 1.
+It is equivalent to the two-sample Wilcoxon rank-sum statistics. Higher the AUC, the better the model is at predicting 0 classes as 0 
+and 1 classes as 1.
 
 Depending upon the threshold, we can minimize or maximize them. When AUC is 0.7,
 
@@ -122,63 +126,92 @@ steps:
 
  - punctuation removal
 
-Fill in missing data: 
 
-	Dealing with missing data is very important in any part of data preprocessing. For this project, forward fill and backward fill has been used to 
+#### Fill in missing data: 
 
-	make sure that, there are no NAN values and the other part of the data can be used for other features instead of getting rid of the whole data row. 
+	Dealing with missing data is very important in any part of data preprocessing. For this project, 
+	forward fill and backward fill has been used to 
 
-Delete Columns: 
+	make sure that, there are no NAN values and the other part of the data can be used for other features instead of 
+	getting rid of the whole data row. 
 
-	Some data are not possible to fill because of the nature of the data and non-usability. Such data columns have been removed. 
+
+#### Delete Columns: 
+
+	Some data are not possible to fill because of the nature of the data and non-usability. Such data columns
+	 have been removed. 
 
 	This are the columns have been removed:
 
 	['user_rt','retweet_id','retweet_date','translate', 'trans_src', "near", "geo", "source","user_rt_id"]
 
-Tokenization: 
 
-	In order to get our computer to understand any text, we need to break that word down in a way that our machine can understand. That’s where the concept of tokenization 
+#### Tokenization: 
 
-	Natural Language Processing (NLP) comes in. Simply put, we can’t work with text data if we don’t perform tokenization. It is the building block of Natural Language Processing.
+	In order to get our computer to understand any text, we need to break that word down in a way that our 
+	machine can understand. That’s where the concept of tokenization 
 
-	For performing tokenization, first, the data has been converted into sentence tokens. Then, from those sentence tokens, data has been processed into word tokens for further preprocessing. 
+	Natural Language Processing (NLP) comes in. Simply put, we can’t work with text data if we don’t perform 
+	tokenization. It is the building block of Natural Language Processing.
 
-Url removal: 
+	For performing tokenization, first, the data has been converted into sentence tokens. Then, from those sentence
+	 tokens, data has been processed into word tokens for further preprocessing. 
 
-	For natural language preprocessing, the URLs don't represent anything except noise to the data. For getting rid of the extra noises, the URLs from the data has been removed for further preprocessing
 
-	Regular expressions are one of the most essential parts of the NLP. URLs are removed using regular expressions for making the process much faster. 
+#### Url removal: 
 
-Lemmatization:
+	For natural language preprocessing, the URLs don't represent anything except noise to the data. For getting rid of
+	the extra noises, the URLs from the data has been removed for further preprocessing
 
-	For grammatical reasons, documents are going to use different forms of a word, such as organize, organize, and organize. Additionally, there are families of derivationally related words with similar meanings, 
+	Regular expressions are one of the most essential parts of the NLP. URLs are removed using regular expressions for 
+	making the process much faster. 
 
-	such as democracy, democratic, and democratization. In many situations, it seems as if it would be useful to search for one of these words to return documents containing another word in the set. 
 
-	Lemmatization usually refers to doing things properly with the use of a vocabulary and morphological analysis of words, normally aiming to remove inflectional endings only and to return the base or dictionary form of a word, which is known as the lemma.
+#### Lemmatization:
 
-	Stemming usually refers to a crude heuristic process that chops off the ends of words in the hope of achieving this goal correctly most of the time, and often includes the removal of derivational affixes.
+	For grammatical reasons, documents are going to use different forms of a word, such as organize, organize, 
+	and organize. Additionally, there are families of derivationally related words with similar meanings, 
+
+	such as democracy, democratic, and democratization. In many situations, it seems as if it would be useful 
+	to search for one of these words to return documents containing another word in the set. 
+
+	Lemmatization usually refers to doing things properly with the use of a vocabulary and morphological 
+	analysis of words, normally aiming to remove inflectional endings only and to return the base or dictionary form 
+	of a word, which is known as the lemma.
+
+	Stemming usually refers to a crude heuristic process that chops off the ends of words in the hope of 
+	achieving this goal correctly most of the time, and often includes the removal of derivational affixes.
 
 	Lemmatization has been used instead of stemming to keep the data meaningful and closer to its lexical meaning. 
 
-Stop Word Removal: 
 
-	Stop word removal is one of the most commonly used preprocessing steps across different NLP applications. The idea is simply removing the words that occur commonly across all the documents in the corpus.
+#### Stop Word Removal: 
 
-	Typically, articles and pronouns are generally classified as stop words. These words have no significance in some of the NLP tasks like information retrieval and classification, which means these words are not very discriminative.
+	Stop word removal is one of the most commonly used preprocessing steps across different NLP applications. 
+	The idea is simply removing the words that occur commonly across all the documents in the corpus.
 
-	On the contrary, in some NLP applications stop word removal will have very little impact. Most of the time, the stop word list for the given language is a well-hand-curated list of words that occur most commonly across corpora.
+	Typically, articles and pronouns are generally classified as stop words. These words have no significance
+	in some of the NLP tasks like information retrieval and classification, which means these words are 
+	not very discriminative.
 
-	From the Nltk corpus, the English language library of stop words has been used to get rid of the most common words that have none or ignorable impacts. 
+	On the contrary, in some NLP applications stop word removal will have very little impact. Most of the time,
+	the stop word list for the given language is a well-hand-curated list of words that 
+	occur most commonly across corpora.
 
-punctuation removal: 
+	From the Nltk corpus, the English language library of stop words has been used to get rid of the most 
+	common words that have none or ignorable impacts. 
 
-	Punctuation words make the data uninterpretable when it's being tokenized and lemmatized. These steps have no meaning and means to be removed to keep the data clean, readable, and computationally efficient.
+
+#### punctuation removal: 
+
+	Punctuation words make the data uninterpretable when it's being tokenized and lemmatized. These steps have no 
+	meaning and means to be removed to keep the data clean, readable, and computationally efficient.
 
 	
 
 	Img********** has to be included. 
+	
+	
 ## Features Visualization
 To reduce the computational complexity and focus all the resources in the most valuable and telling 
 features, we decided to do some initial look into our `tweets` data to get an idea about how different 
