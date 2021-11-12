@@ -13,7 +13,7 @@ from sklearn.feature_selection import SelectKBest, mutual_info_classif
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
-from script.util import plot_pca_biplot,scatter_plot_pca
+from script.util import scatter_plot_pca
 import numpy as np
 
 
@@ -76,9 +76,8 @@ else: # need to set things up manually
             #to name images depending on whether it is the training, validion or test data set.
             graph_name =args.input_file.split("/")[-1].split('.')[0]
             scatter_plot_pca(reduced_features,args.export_plot,graph_name)
-            plt.clf()
-            #Plot pca biplot
-            #plot_pca_biplot(args.export_plot,graph_name,reduced_features[:,0:2], np.transpose(dim_red.components_[0:2, :]), list(feature_names))
+
+
 
 # store the results
 output_data = {"features": reduced_features, 
