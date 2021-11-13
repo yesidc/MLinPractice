@@ -338,7 +338,7 @@ Most of the feature selection process was done based on the results obtained fro
 
 ## Dimensionality Reduction
 
-We applied dimensionality reduction to the features decribed above. 
+We applied dimensionality reduction to the features described above. 
 
 We wanted to reduce the dimensionality of the data to analyze the behaviour and usefulness of 
 specific features during classification. 
@@ -351,8 +351,14 @@ and, thus, preventing the difference between the values to be high. For this, we
 and reduced the dimensions to 2 `n_components = 2`.
 
 ### Results
+#### Explained variance ratio:
+We found that the principal component 1 holds 31.3% of the information while the second principal 
+component holds the 20%. On the other hand, we also found that after projecting  five-dimensional data
+to two-dimensional data, 48.7 % of the information was lost.
 
-Which features were selected / created? Do you have any scores to report?
+ <img src="images/PCA_training.png" alt="drawing" width="40%"  style="float:left"/>
+
+
 
 ### Interpretation
 
