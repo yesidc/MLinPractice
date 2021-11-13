@@ -13,7 +13,8 @@ from sklearn.feature_selection import SelectKBest, mutual_info_classif
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
-from script.util import plot_pca_biplot,scatter_plot_pca
+from script.util import plot_pca
+import pandas as pd
 import numpy as np
 
 
@@ -36,6 +37,11 @@ with open(args.input_file, 'rb') as f_in:
 features = input_data["features"]
 labels = input_data["labels"]
 feature_names = input_data["feature_names"]
+
+
+
+df=pd.DataFrame(data=features, columns=feature_names)
+df['labels']=labels
 
 if args.import_file is not None:
     # simply import an already fitted dimensionality reducer
@@ -72,13 +78,12 @@ else: # need to set things up manually
         #Implement PCA
         dim_red = PCA(n_components=args.pca) #PCA model
         reduced_features = dim_red.fit_transform(features)
+        print(f'Explained variance ratio = {dim_red.explained_variance_ratio_}')
+
         if args.pca ==2:
             #to name images depending on whether it is the training, validion or test data set.
             graph_name =args.input_file.split("/")[-1].split('.')[0]
-            scatter_plot_pca(reduced_features,args.export_plot,graph_name)
-            plt.clf()
-            #Plot pca biplot
-            plot_pca_biplot(args.export_plot,graph_name,reduced_features[:,0:2], np.transpose(dim_red.components_[0:2, :]), list(feature_names))
+            plot_pca(reduced_features,args.export_plot,graph_name,df)
 
 # store the results
 output_data = {"features": reduced_features, 

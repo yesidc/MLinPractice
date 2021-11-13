@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+
+
 """
 Utility file for collecting frequently used constants and helper functions.
 
@@ -8,34 +10,7 @@ Created on Wed Sep 29 10:50:36 2021
 @author: lbechberger
 """
 import matplotlib.pyplot as plt
-
-#Function adapted from code availabe here https://ostwalprasad.github.io/machine-learning/PCA-using-python.html
-def scatter_plot_pca(pca,path_to_save,graph_name):
-    plt.scatter(pca[:, 0], pca[:, 1])
-    plt.xlabel("PC{}".format(1))
-    plt.ylabel("PC{}".format(2))
-    plt.savefig(path_to_save+"/PCA_scatter_plot_"+graph_name+".png")
-
-#Function adapted from code availabe here https://ostwalprasad.github.io/machine-learning/PCA-using-python.html
-def plot_pca_biplot(path_to_save,graph_name,score, coeff, labels=None):
-    xs = score[:, 0]
-    ys = score[:, 1]
-    n = coeff.shape[0]
-    plt.scatter(xs , ys , s=5)
-    for i in range(n):
-        plt.arrow(0, 0, coeff[i, 0], coeff[i, 1], color='r', alpha=0.5)
-        if labels is None:
-            plt.text(coeff[i, 0] * 1.15, coeff[i, 1] * 1.15, "Var" + str(i + 1), color='green', ha='center',
-                     va='center')
-        else:
-            plt.text(coeff[i, 0] * 1.15, coeff[i, 1] * 1.15, labels[i], color='g', ha='center', va='center')
-
-    plt.xlabel("PC{}".format(1))
-    plt.ylabel("PC{}".format(2))
-    plt.grid()
-    plt.savefig(path_to_save + "/PCA_biplot_"+ graph_name +".png")
-
-
+import pandas as pd
 
 # column names for the original data frame
 
@@ -48,8 +23,28 @@ COLUMN_URLS = "urls"
 # column names of novel columns for preprocessing
 COLUMN_LABEL = "label"
 COLUMN_PUNCTUATION = "tweet_no_punctuation"
-
-
 SUFFIX_TOKENIZED= "_tokenized"
-
 CLEANED_TWEET = "cleaned_tweet"
+
+
+
+#Function adapted from code availabe here https://www.datacamp.com/community/tutorials/principal-component-analysis-in-python
+def plot_pca(pca,path_to_save,graph_name,df):
+    pcd_df=pd.DataFrame(data=pca, columns=['principal component 1', 'principal component 2'])
+
+    plt.figure()
+    plt.figure(figsize=(10, 10))
+    plt.xticks(fontsize=12)
+    plt.yticks(fontsize=14)
+    plt.xlabel('Principal Component - 1', fontsize=20)
+    plt.ylabel('Principal Component - 2', fontsize=20)
+    plt.title("PCA of tweet dataset", fontsize=20)
+    targets = [True, False]
+    colors = ['r', 'g']
+    for target, color in zip(targets, colors):
+        indicesToKeep = df['labels'] == target
+        plt.scatter(pcd_df.loc[indicesToKeep, 'principal component 1']
+                    , pcd_df.loc[indicesToKeep, 'principal component 2'], c=color, s=50)
+
+    plt.legend(targets, prop={'size': 15})
+    plt.savefig(path_to_save + "/PCA_" + graph_name + ".png")

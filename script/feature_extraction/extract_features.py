@@ -38,9 +38,6 @@ args = parser.parse_args()
 # load data
 df = pd.read_csv(args.input_file, quoting = csv.QUOTE_NONNUMERIC, lineterminator = "\n")
 
-#TODO change readme reference to code --> change it to script
-#TODO delete this line of code
-df = df.iloc[0:10]
 
 
 if args.import_file is not None:
