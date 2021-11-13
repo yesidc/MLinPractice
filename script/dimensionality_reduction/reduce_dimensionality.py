@@ -69,21 +69,29 @@ else: # need to set things up manually
             print("    {0}".format(feature_names))
             print("    " + str(dim_red.scores_))
             print("    " + str(get_feature_names(dim_red, feature_names)))
-        # apply the dimensionality reduction to the given features
-        reduced_features = dim_red.transform(features)
+
 
     if args.pca is not None:
         # Standardize features
         features = StandardScaler().fit_transform(features)
         #Implement PCA
         dim_red = PCA(n_components=args.pca) #PCA model
-        reduced_features = dim_red.fit_transform(features)
-        print(f'Explained variance ratio = {dim_red.explained_variance_ratio_}')
 
-        if args.pca ==2:
-            #to name images depending on whether it is the training, validion or test data set.
-            graph_name =args.input_file.split("/")[-1].split('.')[0]
-            plot_pca(reduced_features,args.export_plot,graph_name,df)
+
+
+
+
+
+# apply the dimensionality reduction to the given features
+reduced_features = dim_red.transform(features)
+
+if dim_red.__str__()[0:3] == 'PCA':
+    print(f'Explained variance ratio = {dim_red.explained_variance_ratio_}')
+    if args.export_plot is not None:
+        # to name images depending on whether it is the training, validation or test data set.
+        graph_name = args.input_file.split("/")[-1].split('.')[0]
+        plot_pca(reduced_features, args.export_plot, graph_name, df)
+
 
 # store the results
 output_data = {"features": reduced_features, 

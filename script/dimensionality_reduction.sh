@@ -9,6 +9,6 @@ python -m script.dimensionality_reduction.reduce_dimensionality data/feature_ext
 
 # run feature extraction on validation set and test set (with pre-fit parameters)
 echo "  validation set"
-python -m script.dimensionality_reduction.reduce_dimensionality data/feature_extraction/validation.pickle data/dimensionality_reduction/validation.pickle -f data/dimensionality_reduction -e data/dimensionality_reduction/pipeline.pickle -p 2
+python -m script.dimensionality_reduction.reduce_dimensionality data/feature_extraction/validation.pickle data/dimensionality_reduction/validation.pickle -f data/dimensionality_reduction -i data/dimensionality_reduction/pipeline.pickle
 echo "  test set"
-python -m script.dimensionality_reduction.reduce_dimensionality data/feature_extraction/test.pickle data/dimensionality_reduction/test.pickle -f data/dimensionality_reduction -e data/dimensionality_reduction/pipeline.pickle -p 2
+python -m script.dimensionality_reduction.reduce_dimensionality data/feature_extraction/test.pickle data/dimensionality_reduction/test.pickle -f data/dimensionality_reduction -i data/dimensionality_reduction/pipeline.pickle
