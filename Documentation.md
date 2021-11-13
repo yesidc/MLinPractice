@@ -356,14 +356,12 @@ We found that the principal component 1 holds 31.3% of the information while the
 component holds the 20%. On the other hand, we also found that after projecting  five-dimensional data
 to two-dimensional data, 48.7 % of the information was lost.
 
+#### Training split: visualization PCA
+
  <img src="images/PCA_training.png" alt="drawing" width="40%"  style="float:left"/>
-
-
-
-### Interpretation
-
-Can we somehow make sense of the dimensionality reduction results?
-Which features are the most important ones and why may that be the case?
+ 
+As suggested by the graph above, the data cannot be easily separated linearly. Besides, the True class (the tweet is viral) is more spread out than the non-viral
+class (False). The results for the validation and test set do no differ much, you can find the plots <a href="https://github.com/yesidc/MLinPractice/tree/main/images">here</a>
 
 ## Classification
 
