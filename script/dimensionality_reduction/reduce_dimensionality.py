@@ -76,7 +76,7 @@ else: # need to set things up manually
         features = StandardScaler().fit_transform(features)
         #Implement PCA
         dim_red = PCA(n_components=args.pca) #PCA model
-
+        dim_red.fit(features)
 
 
 
