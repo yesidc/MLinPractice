@@ -462,7 +462,7 @@ results we get after running Majority class classfiar :
 
 Multinomial Bayes classifiar with out PCA:
 
-<img src="PCA_and_multinimial.jpg" alt="drawing" width="50%"  style="float:right"/>
+<img src="PCA_and_multinimial.png" alt="drawing" width="50%"  style="float:right"/>
 
 
 
