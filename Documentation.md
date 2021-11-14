@@ -16,11 +16,11 @@ Which evaluation metrics did you use and why?
 
 For the evaluation, three different Evaluation Matrices have been implemented. The implemented Evaluation Matrices are below. 
 
-	- Accuracy
+ - Accuracy
 
-	- Log Loss
+ - Log Loss
 
-	- ROC and AUC 
+ - ROC and AUC 
 
 Accuracy: 
 
@@ -33,7 +33,7 @@ it makes sense to use accuracy to
 
 evaluate our model.
 
-	Accuracy = (TP+TN)/(TP+FP+FN+TN)
+        Accuracy = (TP+TN)/(TP+FP+FN+TN)
 
 
 
@@ -44,7 +44,7 @@ Logarithmic Loss or Lof Loss classification works by eliminating the false class
 
 Log Loss assigns a probability to each class for all the samples. 
 
-		img formula
+            img formula
 
 y_ij, indicates whether sample i belongs to class j or not
 
@@ -129,91 +129,90 @@ steps:
 
 #### Fill in missing data: 
 
-	Dealing with missing data is very important in any part of data preprocessing. For this project, 
-	forward fill and backward fill has been used to 
+Dealing with missing data is very important in any part of data preprocessing. For this project, 
+forward fill and backward fill has been used to 
 
-	make sure that, there are no NAN values and the other part of the data can be used for other features instead of 
-	getting rid of the whole data row. 
+make sure that, there are no NAN values and the other part of the data can be used for other features instead of 
+getting rid of the whole data row. 
 
 
 #### Delete Columns: 
 
-	Some data are not possible to fill because of the nature of the data and non-usability. Such data columns
-	 have been removed. 
+Some data are not possible to fill because of the nature of the data and non-usability. Such data columns
+ have been removed. 
 
-	This are the columns have been removed:
+This are the columns have been removed:
 
-	['user_rt','retweet_id','retweet_date','translate', 'trans_src', "near", "geo", "source","user_rt_id"]
+['user_rt','retweet_id','retweet_date','translate', 'trans_src', "near", "geo", "source","user_rt_id"]
 
 
 #### Tokenization: 
 
-	In order to get our computer to understand any text, we need to break that word down in a way that our 
-	machine can understand. That’s where the concept of tokenization 
+In order to get our computer to understand any text, we need to break that word down in a way that our 
+machine can understand. That’s where the concept of tokenization 
 
-	Natural Language Processing (NLP) comes in. Simply put, we can’t work with text data if we don’t perform 
-	tokenization. It is the building block of Natural Language Processing.
+Natural Language Processing (NLP) comes in. Simply put, we can’t work with text data if we don’t perform 
+tokenization. It is the building block of Natural Language Processing.
 
-	For performing tokenization, first, the data has been converted into sentence tokens. Then, from those sentence
-	tokens, data has been processed into word tokens for further preprocessing. 
+For performing tokenization, first, the data has been converted into sentence tokens. Then, from those sentence
+tokens, data has been processed into word tokens for further preprocessing. 
 
 
 #### Url removal: 
 
-	For natural language preprocessing, the URLs don't represent anything except noise to the data. For getting rid of
-	the extra noises, the URLs from the data has been removed for further preprocessing
+For natural language preprocessing, the URLs don't represent anything except noise to the data. For getting rid of
+the extra noises, the URLs from the data has been removed for further preprocessing
 
-	Regular expressions are one of the most essential parts of the NLP. URLs are removed using regular expressions for 
-	making the process much faster. 
+Regular expressions are one of the most essential parts of the NLP. URLs are removed using regular expressions for 
+making the process much faster. 
 
 
 #### Lemmatization:
 
-	For grammatical reasons, documents are going to use different forms of a word, such as organize, organize, 
-	and organize. Additionally, there are families of derivationally related words with similar meanings, 
+For grammatical reasons, documents are going to use different forms of a word, such as organize, organize, 
+and organize. Additionally, there are families of derivationally related words with similar meanings, 
 
-	such as democracy, democratic, and democratization. In many situations, it seems as if it would be useful 
-	to search for one of these words to return documents containing another word in the set. 
+such as democracy, democratic, and democratization. In many situations, it seems as if it would be useful 
+to search for one of these words to return documents containing another word in the set. 
 
-	Lemmatization usually refers to doing things properly with the use of a vocabulary and morphological 
-	analysis of words, normally aiming to remove inflectional endings only and to return the base or dictionary form 
-	of a word, which is known as the lemma.
+Lemmatization usually refers to doing things properly with the use of a vocabulary and morphological 
+analysis of words, normally aiming to remove inflectional endings only and to return the base or dictionary form 
+of a word, which is known as the lemma.
 
-	Stemming usually refers to a crude heuristic process that chops off the ends of words in the hope of 
-	achieving this goal correctly most of the time, and often includes the removal of derivational affixes.
+Stemming usually refers to a crude heuristic process that chops off the ends of words in the hope of 
+achieving this goal correctly most of the time, and often includes the removal of derivational affixes.
 
-	Lemmatization has been used instead of stemming to keep the data meaningful and closer to its lexical meaning. 
+Lemmatization has been used instead of stemming to keep the data meaningful and closer to its lexical meaning. 
 
 
 #### Stop Word Removal: 
 
-	Stop word removal is one of the most commonly used preprocessing steps across different NLP applications. 
-	The idea is simply removing the words that occur commonly across all the documents in the corpus.
+Stop word removal is one of the most commonly used preprocessing steps across different NLP applications. 
+The idea is simply removing the words that occur commonly across all the documents in the corpus.
 
-	Typically, articles and pronouns are generally classified as stop words. These words have no significance
-	in some of the NLP tasks like information retrieval and classification, which means these words are 
-	not very discriminative.
+Typically, articles and pronouns are generally classified as stop words. These words have no significance
+in some of the NLP tasks like information retrieval and classification, which means these words are 
+not very discriminative.
 
-	On the contrary, in some NLP applications stop word removal will have very little impact. Most of the time,
-	the stop word list for the given language is a well-hand-curated list of words that 
-	occur most commonly across corpora.
+On the contrary, in some NLP applications stop word removal will have very little impact. Most of the time,
+the stop word list for the given language is a well-hand-curated list of words that 
+occur most commonly across corpora.
 
-	From the Nltk corpus, the English language library of stop words has been used to get rid of the most 
-	common words that have none or ignorable impacts. 
+From the Nltk corpus, the English language library of stop words has been used to get rid of the most 
+common words that have none or ignorable impacts. 
 
 
 #### punctuation removal: 
 
-	Punctuation words make the data uninterpretable when it's being tokenized and lemmatized. These steps have no 
-	meaning and means to be removed to keep the data clean, readable, and computationally efficient.
+Punctuation words make the data uninterpretable when it's being tokenized and lemmatized. These steps have no 
+meaning and means to be removed to keep the data clean, readable, and computationally efficient.
 
-	
 
-	<img src="images/info_about_the_dataset.png" alt="drawing" width="100%"  style="float:left"/>
 
-	[comment]: <> (![df_description]&#40;images/info_about_the_dataset.png&#41;)
-	
-	
+<img src="images/info_about_the_dataset.png" alt="drawing" width="100%"  style="float:left"/>
+
+
+
 ## Features Visualization
 To reduce the computational complexity and focus all the resources in the most valuable and telling 
 features, we decided to do some initial look into our `tweets` data to get an idea about how different 
