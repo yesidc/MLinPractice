@@ -36,12 +36,12 @@ evaluate our model.
     Accuracy = (TP+TN)/(TP+FP+FN+TN)
     
 
-<img src="images/accuracy_diagram.jpg" alt="drawing" width="80%"  style="float:right"/>
+<img src="images/accuracy_diagram.jpg" alt="drawing" width="40%"  style="float:right"/>
 
 The Graph of accuracy can be interpreted as, as the model learns, the accuracy get higher if the model has been designed in an efficient way with appropriate and sufficient features.
 
 
-<img src="images/accuracy_graph.PNG" alt="drawing" width="80%"  style="float:right"/>
+<img src="images/accuracy_graph.PNG" alt="drawing" width="40%"  style="float:right"/>
 
 
 
@@ -54,7 +54,7 @@ The Graph of accuracy can be interpreted as, as the model learns, the accuracy g
 Logarithmic Loss or Lof Loss classification works by eliminating the false classifications and works well with multiclass classification. Log Loss assigns a probability to each class for all the samples. 
 
 
-<img src="images/log_loss_formula.png" alt="drawing" width="80%"  style="float:right"/>
+<img src="images/log_loss_formula.png" alt="drawing" width="40%"  style="float:right"/>
 
 
     y_ij, indicates whether sample i belongs to class j or not
@@ -66,7 +66,7 @@ log loss has no upper bound, meaning can be from 0 to inf. log loss of zero mean
 
 where bigger value means lower accuracy.
 
-<img src="images/log-loss.png" alt="drawing" width="80%"  style="float:right"/>
+<img src="images/log-loss.png" alt="drawing" width="40%"  style="float:right"/>
 
 
 
@@ -87,7 +87,7 @@ True Positive on the y axis and False Positive on the x-axis.
 The ROC curve shows the trade-off between sensitivity (or TPR) and specificity (1 – FPR). In simple terms, it is the curve of probability. Classifiers that give curves closer to the top-left corner indicate better performance. As a baseline, a random classifier is expected to give points lying along the diagonal (FPR = TPR). The closer the curve comes to the 45-degree diagonal of the ROC space, the less accurate the test. ROC does not depend on the classification distribution. 
 
 
-<img src="images/aoc_roc.PNG" alt="drawing" width="80%"  style="float:right"/>
+<img src="images/aoc_roc.PNG" alt="drawing" width="40%"  style="float:right"/>
 
 
 
@@ -148,7 +148,7 @@ forward fill and backward fill has been used to
 make sure that, there are no NAN values and the other part of the data can be used for other features instead of 
 getting rid of the whole data row. 
 
-<img src="images/info_about_the_dataset.PNG" alt="drawing" width="80%"  style="float:right"/>
+<img src="images/info_about_the_dataset.PNG" alt="drawing" width="40%"  style="float:right"/>
 
 
 #### Delete Columns: 
@@ -227,7 +227,7 @@ The work flow of the preprocessing is well defined with the diagram below:
 
 
 
-<img src="images/preprocessing_diagram.PNG" alt="drawing" width="80%"  style="float:right"/>
+<img src="images/preprocessing_diagram.PNG" alt="drawing" width="40%"  style="float:right"/>
 
 
 
@@ -236,7 +236,7 @@ The work flow of the preprocessing is well defined with the diagram below:
 After performing the pre processing steps, unit check has been performed to make sure our preprocessing steps in the pipeline is working as desired. 
 
 
-<img src="images/uni_test_preprocessing.PNG" alt="drawing" width="80%"  style="float:right"/>
+<img src="images/uni_test_preprocessing.PNG" alt="drawing" width="40%"  style="float:right"/>
 
 
 
@@ -407,20 +407,60 @@ Which classifier(s) did you use? Which hyperparameter(s) (with their respective
 candidate values) did you look at? What were your reasons for this?
 
 #### Multinomial Naive Bayes:
+
 We implemented Multinomial Naive Bayes (which implements the Naive Bayes algorithm) since, according to <a href="https://scikit-learn.org/stable/modules/naive_bayes.html">sklearn</a> documentation, besides it being a classic naive Bayes variant used in text classification; it also performes well with tf-idf vectors (which is one of the features we extracted)
 
-### Training
-We did the training process on the grid. At first we tried to extract all the features described above, but it was not possible due to fact that the memory was exceeded. We resquested up to 64 GB of memory, but this was not enough. Given this memory restriction, we extracted all features but tfidf, and proceded to train the model. 
-### Results
+### Training:
 
+We did the training process on the grid. At first we tried to extract all the features described above, but it was not possible due to fact that the memory was exceeded. We resquested up to 64 GB of memory, but this was not enough. Given this memory restriction, we extracted all features but tfidf, and proceded to train the model. 
+
+
+### Results:
+    will be removed { 
+    
 The big finale begins: What are the evaluation results you obtained with your
 classifiers in the different setups? Do you overfit or underfit? For the best
 selected setup: How well does it generalize to the test set?
+       
+       }
+
+result after running our classifiar with our selected features but, Principal Component Analysis and with out TFIDF
+
+<img src="images/Multinomial_Bayes_no_tfidf_no_PCA.png.PNG" alt="drawing" width="40%"  style="float:right"/>
+
+
+results we get after running lajority class classfiar :
+
+
+<img src="images/Majority_no_PCA_no_tfidf.png" alt="drawing" width="40%"  style="float:right"/>
+
+from the results, we can say that out model doesnt tend towards under or over fitting. With our selected features, out model has been performing quite well classifyingthe possibility of tweets going viral. However, we could not implemented TFIDF for the limitation of grid memory. We believe that, with TFIDF, our model can perform even better as this is a very important in terms of NLP.
+
+
+
 
 ### Interpretation
-
+      will be removed { 
+      
 Which hyperparameter settings are how important for the results?
 How good are we? Can this be used in practice or are we still too bad?
 Anything else we may have learned?
+
+        }
+
+
+
+
+
+from the results for the training set, we can see that we have a accuracy of 85%. So the classificar is not very efficient in classifying. But the resulted parameter are significant with LogLoss of 5.14 and roc_auc of 0.53. Logloss can be from zero to infinity, which means results closer to zero is efficent and more accurate and gets worse as it moves far from zero. For our classifiar, 5.14 is pretty close to zero, which indicates the model is performing significantly well. Interms of ROC_AUC, the model has 0.53 with is slightly over the threshold(0.5) of being absoulately efficient. So the results can be concluded as beging almost perfectly identified the true positive and true negative values. 
+
+For the valication set, the classifier is better in classifying with higher accuray and roc_aoc of 0.5, which means, the classificar is better is classifying the validation set. 
+
+To implement this classifiar in practice, the classifiar needs to perform better then 85%. The dataset has been used are very big and enriched for trainign the model. Hence, due to some technical issue, more impornat features like TFIDF and training the model with multiple features are very cmpotationaly costly, which are not fully implemented. With those problems overcomed, the model could be over 93% in terms of accuracy. However, for learning purpose, the model performs nicely and adds great value for further learning and leaves a scope for improvement.
+
+
+
+
+
 
 
