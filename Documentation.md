@@ -41,7 +41,8 @@ evaluate our model.
     
 
 <img src="images/accuracy_diagram.jpg" alt="drawing" width="40%"  style="float:right"/>
-[source  :  https://miro.medium.com/max/714/0*rsNxu4h53VZF2If0.jpg]
+
+[source] <a href="https://miro.medium.com/max/714/0*rsNxu4h53VZF2If0.jpg]">Medium</a> 
 
 The Graph of accuracy can be interpreted as, as the model learns, the accuracy get higher if the model has been designed in an efficient way with appropriate and sufficient features.
 
@@ -61,6 +62,13 @@ Logarithmic Loss or Lof Loss classification works by eliminating the false class
 
 
 <img src="images/log_loss_formula.png" alt="drawing" width="40%"  style="float:right"/>
+
+[source] <a href="ttps://www.researchgate.net/publication/328128143/figure/fig2/AS:678896869584898@1538873035724/Feature-Accuracy-graph.ppm]">researchgate</a> 
+
+
+
+
+]
 
 
     y_ij, indicates whether sample i belongs to class j or not
@@ -95,7 +103,10 @@ The ROC curve shows the trade-off between sensitivity (or TPR) and specificity (
 
 
 <img src="images/aoc_roc.PNG" alt="drawing" width="40%"  style="float:right"/>
-[source : https://towardsdatascience.com/understanding-auc-roc-curve-68b2303cc9c5]
+
+
+[source] <a href="https://towardsdatascience.com/understanding-auc-roc-curve-68b2303cc9c5]">towardsdatascience</a> 
+
 
 
 
@@ -108,14 +119,17 @@ From the below images, we can understand how the result can be interpreted.
     For a well designed model the ROC and AUC plots should look similar to this.  
 
 <img src="images/aoc_good.PNG" alt="drawing" width="80%"  style="float:right"/>
-[source : https://towardsdatascience.com/understanding-auc-roc-curve-68b2303cc9c5]
+
+[source] <a href="https://towardsdatascience.com/understanding-auc-roc-curve-68b2303cc9c5]">towardsdatascience</a> 
+
 
 
     From the below image, we can see that the model can only differentiate 70% of the true positive and true negatives. 
     Thats why the plots overlaps. 
 
 <img src="images/aoc_bad.PNG" alt="drawing" width="80%"  style="float:right"/>
-[source : https://towardsdatascience.com/understanding-auc-roc-curve-68b2303cc9c5]
+
+[source] <a href="https://towardsdatascience.com/understanding-auc-roc-curve-68b2303cc9c5]">towardsdatascience</a> 
 
 
 
