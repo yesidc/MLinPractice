@@ -63,7 +63,7 @@ Logarithmic Loss or Lof Loss classification works by eliminating the false class
 
 <img src="images/log_loss_formula.png" alt="drawing" width="40%"  style="float:right"/>
 
-[source] <a href="ttps://www.researchgate.net/publication/328128143/figure/fig2/AS:678896869584898@1538873035724/Feature-Accuracy-graph.ppm]">researchgate</a> 
+[source] <a href="ttps://www.researchgate.net/publication/328128143/figure/fig2/AS:678896869584898@1538873035724/Feature-Accuracy-graph.ppm">researchgate</a> 
 
 
 
@@ -105,7 +105,7 @@ The ROC curve shows the trade-off between sensitivity (or TPR) and specificity (
 <img src="images/aoc_roc.PNG" alt="drawing" width="40%"  style="float:right"/>
 
 
-[source] <a href="https://towardsdatascience.com/understanding-auc-roc-curve-68b2303cc9c5]">towardsdatascience</a> 
+[source] <a href="https://towardsdatascience.com/understanding-auc-roc-curve-68b2303cc9c5">towardsdatascience</a> 
 
 
 
@@ -120,7 +120,7 @@ From the below images, we can understand how the result can be interpreted.
 
 <img src="images/aoc_good.PNG" alt="drawing" width="80%"  style="float:right"/>
 
-[source] <a href="https://towardsdatascience.com/understanding-auc-roc-curve-68b2303cc9c5]">towardsdatascience</a> 
+[source] <a href="https://towardsdatascience.com/understanding-auc-roc-curve-68b2303cc9c5">towardsdatascience</a> 
 
 
 
@@ -129,7 +129,7 @@ From the below images, we can understand how the result can be interpreted.
 
 <img src="images/aoc_bad.PNG" alt="drawing" width="80%"  style="float:right"/>
 
-[source] <a href="https://towardsdatascience.com/understanding-auc-roc-curve-68b2303cc9c5]">towardsdatascience</a> 
+[source] <a href="https://towardsdatascience.com/understanding-auc-roc-curve-68b2303cc9c5">towardsdatascience</a> 
 
 
 
