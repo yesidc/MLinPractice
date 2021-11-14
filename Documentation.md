@@ -10,6 +10,7 @@ In the following documentation we provide specifics about the processes involved
 
 ## Evaluation
 
+
 ### Design Decisions
 
 Which evaluation metrics did you use and why? 
@@ -21,8 +22,10 @@ For the evaluation, three different Evaluation Matrices have been implemented. T
  - Log Loss
 
  - ROC and AUC 
+ 
 
-Accuracy: 
+### Accuracy: 
+
 
 Accuracy Matrices tell us the proportion of the true results among the total number of cases examined. This is one of the easies 
 
@@ -32,6 +35,7 @@ As we know from our dataset of Tweets, it is indeed a well-balanced dataset with
 it makes sense to use accuracy to 
 
 evaluate our model.
+
 
     Accuracy = (TP+TN)/(TP+FP+FN+TN)
     
@@ -49,7 +53,8 @@ The Graph of accuracy can be interpreted as, as the model learns, the accuracy g
 
 
 
-#### Log Loss: 
+### Log Loss: 
+
 
 Logarithmic Loss or Lof Loss classification works by eliminating the false classifications and works well with multiclass classification. Log Loss assigns a probability to each class for all the samples. 
 
@@ -71,7 +76,8 @@ where bigger value means lower accuracy.
 
 
 
-#### ROC and AUC:
+### ROC and AUC:
+
 
 ROC(receiver operating characteristic ) curve is a graph showing the performance of a classification model at all classification 
 thresholds. graph plots
@@ -93,31 +99,25 @@ The ROC curve shows the trade-off between sensitivity (or TPR) and specificity (
 
 AUC(Area under the ROC curve) is useful for comparing different classifiers and summarizing the performance of each classifier into a single measure. The most common approach is to compute the area under the ROC curve. It is equivalent to the two-sample Wilcoxon rank-sum statistics. Higher the AUC, the better the model is at predicting 0 classes as 0 and 1 classes as 1. Depending upon the threshold, we can minimize or maximize them. When AUC is 0.7, It means there is a 70% chance that the model will be able to distinguish between positive class and negative class. The better teh model is, it will generate a result close to 0.5, meaning, the model can differenciate true positive and true negative from the data set. 
 
+
 From the below images, we can understand how the result can be interpreted. 
 
-For a well designed model the ROC and AUC plots should look similar to this.  
+
+    For a well designed model the ROC and AUC plots should look similar to this.  
 
 <img src="images/aoc_good.PNG" alt="drawing" width="80%"  style="float:right"/>
 
 
-From the below image, we can see that the model can only differentiate 70% of the true positive and true negatives. thats why the plots overlaps. 
+    From the below image, we can see that the model can only differentiate 70% of the true positive and true negatives. thats why the plots overlaps. 
 
 <img src="images/aoc_bad.PNG" alt="drawing" width="80%"  style="float:right"/>
 
 
-Which baselines did you use and why?
-
-### Results
-
-How do the baselines perform with respect to the evaluation metrics?
-
-### Interpretation
-
-Is there anything we can learn from these results?
 
 
 
 ### Preprocessing 
+
 
 Preprocessing of the data: 
 
@@ -138,9 +138,11 @@ steps:
  - stop word removal
 
  - punctuation removal
+ 
 
 
-#### Fill in missing data: 
+
+### Fill in missing data: 
 
 Dealing with missing data is very important in any part of data preprocessing. For this project, 
 forward fill and backward fill has been used to 
@@ -151,7 +153,8 @@ getting rid of the whole data row.
 <img src="images/info_about_the_dataset.PNG" alt="drawing" width="40%"  style="float:right"/>
 
 
-#### Delete Columns: 
+
+### Delete Columns: 
 
 Some data are not possible to fill because of the nature of the data and non-usability. Such data columns
  have been removed. 
@@ -161,7 +164,9 @@ This are the columns have been removed:
     'user_rt', 'retweet_id', 'retweet_date', 'translate', 'trans_src', 'near', 'geo', 'source', 'user_rt_id'
 
 
-#### Tokenization: 
+
+
+### Tokenization: 
 
 In order to get our computer to understand any text, we need to break that word down in a way that our 
 machine can understand. That’s where the concept of tokenization 
@@ -173,7 +178,9 @@ For performing tokenization, first, the data has been converted into sentence to
 tokens, data has been processed into word tokens for further preprocessing. 
 
 
-#### URL removal: 
+
+
+### URL removal: 
 
 For natural language preprocessing, the URLs don't represent anything except noise to the data. For getting rid of
 the extra noises, the URLs from the data has been removed for further preprocessing
@@ -182,7 +189,9 @@ Regular expressions are one of the most essential parts of the NLP. URLs are rem
 making the process much faster. 
 
 
-#### Lemmatization:
+
+
+### Lemmatization:
 
 For grammatical reasons, documents are going to use different forms of a word, such as organize, organize, 
 and organize. Additionally, there are families of derivationally related words with similar meanings, 
@@ -200,7 +209,9 @@ achieving this goal correctly most of the time, and often includes the removal o
 Lemmatization has been used instead of stemming to keep the data meaningful and closer to its lexical meaning. 
 
 
-#### Stop Word Removal: 
+
+
+### Stop Word Removal: 
 
 Stop word removal is one of the most commonly used preprocessing steps across different NLP applications. 
 The idea is simply removing the words that occur commonly across all the documents in the corpus.
@@ -217,7 +228,9 @@ From the Nltk corpus, the English language library of stop words has been used t
 common words that have none or ignorable impacts. 
 
 
-#### punctuation removal: 
+
+
+### punctuation removal: 
 
 Punctuation words make the data uninterpretable when it's being tokenized and lemmatized. These steps have no 
 meaning and means to be removed to keep the data clean, readable, and computationally efficient.
@@ -231,19 +244,14 @@ The work flow of the preprocessing is well defined with the diagram below:
 
 
 
-#### Unit Test of the Data Set: 
+
+
+### Unit Test of the Data Set: 
 
 After performing the pre processing steps, unit check has been performed to make sure our preprocessing steps in the pipeline is working as desired. 
 
 
 <img src="images/uni_test_preprocessing.PNG" alt="drawing" width="40%"  style="float:right"/>
-
-
-
-
-
-
-
 
 
 
@@ -256,7 +264,10 @@ of less useful features we have and identify the most explanatory variables thus
 of the model. Afterwards, we can select those features that are more relevant, and then use them
 to train our model to predict tweets virality. 
 
+
+
 ### Design Decisions
+
 Initially, we did some exploratory analysis of the data features as given by looking at the data description and 
 variance.
 - Initial data features description and variance
@@ -340,6 +351,7 @@ tweets by date (`year`, `month`, and `day`) and time (`hour`) of creation.
 
 ### Results and Interpretation
 
+
 - The means and variances are pretty much alike and higher for features such as `likes_count`, `replies_count` and
 `retweets_count` when compared to the other features. However, with respect to the labels feature of interest, it 
   is not the case.
@@ -362,6 +374,8 @@ considerable change in the amount of tweets made per hour.
 - Additionally, this difference is smaller for the amount of tweets that go viral per hour. Namely, viral tweets are 
 fewer between roughly 11:00 and 16:00.
 
+
+
 ## Feature Extraction
 
 Most of the feature selection process was done based on the results obtained from the visualization, as we explained in the previous section.
@@ -379,6 +393,7 @@ We applied dimensionality reduction to the features described above.
 We wanted to reduce the dimensionality of the data to analyze the behaviour and usefulness of 
 specific features during classification. 
 
+
 ### Design Decisions
 
 In order to reduce the data's dimensionality we first standardized the data so that values would be around the same range 
@@ -386,7 +401,10 @@ and, thus, preventing the difference between the values to be high. For this, we
 `sklearn.preprocessing`. Afterwards, we applied principal component analysis (PCA) to the standardized data 
 and reduced the dimensions to 2 `n_components = 2`.
 
+
+
 ### Results
+
 #### Explained variance ratio:
 We found that the principal component 1 holds 31.3% of the information while the second principal 
 component holds the 20%. On the other hand, we also found that after projecting  five-dimensional data
@@ -399,7 +417,11 @@ to two-dimensional data, 48.7 % of the information was lost.
 As suggested by the graph above, the data cannot be easily separated linearly. Besides, the True class (the tweet is viral) is more spread out than the non-viral
 class (False). The results for the validation and test set do no differ much, you can find the plots <a href="https://github.com/yesidc/MLinPractice/tree/main/images">here</a>
 
+
+
 ## Classification
+
+
 
 ### Design Decisions
 
@@ -447,10 +469,6 @@ How good are we? Can this be used in practice or are we still too bad?
 Anything else we may have learned?
 
         }
-
-
-
-
 
 from the results for the training set, we can see that we have a accuracy of 85%. So the classificar is not very efficient in classifying. But the resulted parameter are significant with LogLoss of 5.14 and roc_auc of 0.53. Logloss can be from zero to infinity, which means results closer to zero is efficent and more accurate and gets worse as it moves far from zero. For our classifiar, 5.14 is pretty close to zero, which indicates the model is performing significantly well. Interms of ROC_AUC, the model has 0.53 with is slightly over the threshold(0.5) of being absoulately efficient. So the results can be concluded as beging almost perfectly identified the true positive and true negative values. 
 
