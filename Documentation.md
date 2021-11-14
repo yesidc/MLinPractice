@@ -108,7 +108,8 @@ From the below images, we can understand how the result can be interpreted.
 <img src="images/aoc_good.PNG" alt="drawing" width="80%"  style="float:right"/>
 
 
-    From the below image, we can see that the model can only differentiate 70% of the true positive and true negatives. thats why the plots overlaps. 
+    From the below image, we can see that the model can only differentiate 70% of the true positive and true negatives. 
+    Thats why the plots overlaps. 
 
 <img src="images/aoc_bad.PNG" alt="drawing" width="80%"  style="float:right"/>
 
@@ -150,7 +151,7 @@ forward fill and backward fill has been used to
 make sure that, there are no NAN values and the other part of the data can be used for other features instead of 
 getting rid of the whole data row. 
 
-<img src="images/info_about_the_dataset.PNG" alt="drawing" width="40%"  style="float:right"/>
+<img src="images/info_about_the_dataset.PNG" alt="drawing" width="60%"  style="float:right"/>
 
 
 
@@ -251,7 +252,7 @@ The work flow of the preprocessing is well defined with the diagram below:
 After performing the pre processing steps, unit check has been performed to make sure our preprocessing steps in the pipeline is working as desired. 
 
 
-<img src="images/uni_test_preprocessing.PNG" alt="drawing" width="40%"  style="float:right"/>
+<img src="images/uni_test_preprocessing.PNG" alt="drawing" width="60%"  style="float:right"/>
 
 
 
@@ -448,7 +449,7 @@ selected setup: How well does it generalize to the test set?
 
 result after running our classifiar with our selected features but, Principal Component Analysis and with out TFIDF
 
-<img src="images/Multinomial_Bayes_no_tfidf_no_PCA.png.PNG" alt="drawing" width="40%"  style="float:right"/>
+<img src="images/Multinomial_Bayes_no_tfidf_no_PCA.png" alt="drawing" width="40%"  style="float:right"/>
 
 
 results we get after running lajority class classfiar :
