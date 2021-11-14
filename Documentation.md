@@ -449,13 +449,13 @@ selected setup: How well does it generalize to the test set?
 
 result after running our classifiar with our selected features but, Principal Component Analysis and with out TFIDF
 
-<img src="images/Multinomial_Bayes_no_tfidf_no_PCA.png" alt="drawing" width="40%"  style="float:right"/>
+<img src="images/Multinomial_Bayes_no_tfidf_no_PCA.png" alt="drawing" width="50%"  style="float:right"/>
 
 
 results we get after running lajority class classfiar :
 
 
-<img src="images/Majority_no_PCA_no_tfidf.png" alt="drawing" width="40%"  style="float:right"/>
+<img src="images/Majority_no_PCA_no_tfidf.png" alt="drawing" width="50%"  style="float:right"/>
 
 from the results, we can say that out model doesnt tend towards under or over fitting. With our selected features, out model has been performing quite well classifyingthe possibility of tweets going viral. However, we could not implemented TFIDF for the limitation of grid memory. We believe that, with TFIDF, our model can perform even better as this is a very important in terms of NLP.
 
