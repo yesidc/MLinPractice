@@ -460,15 +460,18 @@ We did the training process on the grid. At first we tried to extract all the fe
 ### Results:
 
 
-result after running our classifiar with our selected features but, Principal Component Analysis and with out TFIDF
-
+Result after running our classifiar with our selected features but, Principal Component Analysis and with out TFIDF:
 <img src="images/Multinomial_Bayes_no_tfidf_no_PCA.png" alt="drawing" width="50%"  style="float:right"/>
 
 
-results we get after running lajority class classfiar :
-
-
+results we get after running Majority class classfiar :
 <img src="images/Majority_no_PCA_no_tfidf.png" alt="drawing" width="50%"  style="float:right"/>
+
+
+Multinomial Bayes classifiar with out PCA:
+<img src="PCA_no_TFIDF__M_bayes_classifier.png" alt="drawing" width="50%"  style="float:right"/>
+
+
 
 from the results, we can say that out model doesnt tend towards under or over fitting. With our selected features, out model has been performing quite well classifyingthe possibility of tweets going viral. However, we could not implemented TFIDF for the limitation of grid memory. We believe that, with TFIDF, our model can perform even better as this is a very important in terms of NLP.
 
@@ -478,9 +481,13 @@ from the results, we can say that out model doesnt tend towards under or over fi
 ### Interpretation
 
 
-from the results for the training set, we can see that we have a accuracy of 85%. So the classificar is not very efficient in classifying. But the resulted parameter are significant with LogLoss of 5.14 and roc_auc of 0.53. Logloss can be from zero to infinity, which means results closer to zero is efficent and more accurate and gets worse as it moves far from zero. For our classifiar, 5.14 is pretty close to zero, which indicates the model is performing significantly well. Interms of ROC_AUC, the model has 0.53 with is slightly over the threshold(0.5) of being absoulately efficient. So the results can be concluded as beging almost perfectly identified the true positive and true negative values. 
+from the results for the training set,on multinomial Bayes classifiar with out PCA, we can see that we have a accuracy of 85%. So the classificar is not very efficient in classifying. But the resulted parameter are significant with LogLoss of 5.14 and roc_auc of 0.53. Logloss can be from zero to infinity, which means results closer to zero is efficent and more accurate and gets worse as it moves far from zero. For our classifiar, 5.14 is pretty close to zero, which indicates the model is performing significantly well. Interms of ROC_AUC, the model has 0.53 with is slightly over the threshold(0.5) of being absoulately efficient. So the results can be concluded as beging almost perfectly identified the true positive and true negative values. 
 
 For the valication set, the classifier is better in classifying with higher accuray and roc_aoc of 0.5, which means, the classificar is better is classifying the validation set. 
+
+For the Miltinomial Bayes Classifiar performed with PCA, the accuracy is slighly better then with PCA. The accuracy results into 90% and the Log Loss is nearly 3. which means, the classifiar can perform better when PCA has been applied to it. 
+
+For the Majority class classifiar, the results are nearly same as Muntinomial Bayes classifiar with PCA. That signifies the similarity between the predicatibility of the both classifiars. 
 
 To implement this classifiar in practice, the classifiar needs to perform better then 85%. The dataset has been used are very big and enriched for trainign the model. Hence, due to some technical issue, more impornat features like TFIDF and training the model with multiple features are very cmpotationaly costly, which are not fully implemented. With those problems overcomed, the model could be over 93% in terms of accuracy. However, for learning purpose, the model performs nicely and adds great value for further learning and leaves a scope for improvement.
 
