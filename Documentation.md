@@ -97,7 +97,7 @@ The ROC curve shows the trade-off between sensitivity (or TPR) and specificity (
 
 
 
-AUC(Area under the ROC curve) is useful for comparing different classifiers and summarizing the performance of each classifier into a single measure. The most common approach is to compute the area under the ROC curve. It is equivalent to the two-sample Wilcoxon rank-sum statistics. Higher the AUC, the better the model is at predicting 0 classes as 0 and 1 classes as 1. Depending upon the threshold, we can minimize or maximize them. When AUC is 0.7, It means there is a 70% chance that the model will be able to distinguish between positive class and negative class. The better teh model is, it will generate a result close to 0.5, meaning, the model can differenciate true positive and true negative from the data set. 
+AUC(Area under the ROC curve) is useful for comparing different classifiers and summarizing the performance of each classifier into a single measure. The most common approach is to compute the area under the ROC curve. It is equivalent to the two-sample Wilcoxon rank-sum statistics. Higher the AUC, the better the model is at predicting 0 classes as 0 and 1 classes as 1. Depending upon the threshold, we can minimize or maximize them. When AUC is 0.7, it means there is a 70% chance that the model will be able to distinguish between positive class and negative class. The better the model is, it will generate a result close to 0.5, meaning, the model can differenciate true positive and true negative from the data set. 
 
 
 From the below images, we can understand how the result can be interpreted. 
@@ -160,7 +160,7 @@ getting rid of the whole data row.
 Some data are not possible to fill because of the nature of the data and non-usability. Such data columns
  have been removed. 
 
-This are the columns have been removed:
+These columns have been removed:
 
     'user_rt', 'retweet_id', 'retweet_date', 'translate', 'trans_src', 'near', 'geo', 'source', 'user_rt_id'
 
@@ -249,7 +249,7 @@ The work flow of the preprocessing is well defined with the diagram below:
 
 ### Unit Test of the Data Set: 
 
-After performing the pre processing steps, unit check has been performed to make sure our preprocessing steps in the pipeline is working as desired. 
+After performing the pre processing steps, unit check has been performed to make sure our preprocessing steps in the pipeline are working as desired. 
 
 
 <img src="images/uni_test_preprocessing.PNG" alt="drawing" width="60%"  style="float:right"/>
@@ -431,11 +431,11 @@ candidate values) did you look at? What were your reasons for this?
 
 #### Multinomial Naive Bayes:
 
-We implemented Multinomial Naive Bayes (which implements the Naive Bayes algorithm) since, according to <a href="https://scikit-learn.org/stable/modules/naive_bayes.html">sklearn</a> documentation, besides it being a classic naive Bayes variant used in text classification; it also performes well with tf-idf vectors (which is one of the features we extracted)
+We implemented Multinomial Naive Bayes (which implements the Naive Bayes algorithm) since, according to <a href="https://scikit-learn.org/stable/modules/naive_bayes.html">sklearn</a> documentation, besides it being a classic naive Bayes variant used in text classification; it also performes well with tf-idf vectors and it is well suited for NLP problems. (which is one of the features we extracted)
 
 ### Training:
 
-We did the training process on the grid. At first we tried to extract all the features described above, but it was not possible due to fact that the memory was exceeded. We resquested up to 64 GB of memory, but this was not enough. Given this memory restriction, we extracted all features but tfidf, and proceded to train the model. 
+We did the training process on the grid. At first we tried to extract all the features described above, but it was not possible due to the fact that the memory was exceeded. We resquested up to 64 GB of memory, but this was not enough. Given this memory restriction, we extracted all features but tfidf, and proceded to train the model. 
 
 
 ### Results:
@@ -447,17 +447,17 @@ selected setup: How well does it generalize to the test set?
        
        }
 
-result after running our classifiar with our selected features but, Principal Component Analysis and with out TFIDF
+result after running our classifiar with our selected features but, Principal Component Analysis and without TFIDF
 
 <img src="images/Multinomial_Bayes_no_tfidf_no_PCA.png" alt="drawing" width="50%"  style="float:right"/>
 
 
-results we get after running lajority class classfiar :
+results we get after running Majority class classfiar :
 
 
 <img src="images/Majority_no_PCA_no_tfidf.png" alt="drawing" width="50%"  style="float:right"/>
 
-from the results, we can say that out model doesnt tend towards under or over fitting. With our selected features, out model has been performing quite well classifyingthe possibility of tweets going viral. However, we could not implemented TFIDF for the limitation of grid memory. We believe that, with TFIDF, our model can perform even better as this is a very important in terms of NLP.
+from the results, we can say that our model doesn't tend towards under or over fitting. With our selected features, our model has been performing quite well classifying the possibility of tweets going viral. However, we could not implement TFIDF for the limitation of grid memory. We believe that, with TFIDF, our model can perform even better as this is a very important in terms of NLP.
 
 
 
@@ -471,11 +471,11 @@ Anything else we may have learned?
 
         }
 
-from the results for the training set, we can see that we have a accuracy of 85%. So the classificar is not very efficient in classifying. But the resulted parameter are significant with LogLoss of 5.14 and roc_auc of 0.53. Logloss can be from zero to infinity, which means results closer to zero is efficent and more accurate and gets worse as it moves far from zero. For our classifiar, 5.14 is pretty close to zero, which indicates the model is performing significantly well. Interms of ROC_AUC, the model has 0.53 with is slightly over the threshold(0.5) of being absoulately efficient. So the results can be concluded as beging almost perfectly identified the true positive and true negative values. 
+from the results for the training set, we can see that we have a accuracy of 85%. So the classificar is not very efficient in classifying. But the resulted parameters are significant with LogLoss of 5.14 and roc_auc of 0.53. Logloss can be from zero to infinity, which means results closer to zero is efficent and more accurate and gets worse as it moves far from zero. For our classifiar, 5.14 is pretty close to zero, which indicates the model is performing significantly well. In terms of ROC_AUC, the model has 0.53 which is slightly over the threshold(0.5) of being absoulately efficient. So the results can be concluded as beging almost perfectly identified the true positive and true negative values. 
 
-For the valication set, the classifier is better in classifying with higher accuray and roc_aoc of 0.5, which means, the classificar is better is classifying the validation set. 
+For the valication set, the classifier is better in classifying with higher accuray and roc_aoc of 0.5, which means, the classificar is better in classifying the validation set. 
 
-To implement this classifiar in practice, the classifiar needs to perform better then 85%. The dataset has been used are very big and enriched for trainign the model. Hence, due to some technical issue, more impornat features like TFIDF and training the model with multiple features are very cmpotationaly costly, which are not fully implemented. With those problems overcomed, the model could be over 93% in terms of accuracy. However, for learning purpose, the model performs nicely and adds great value for further learning and leaves a scope for improvement.
+To implement this classifiar in practice, the classifiar needs to perform better than 85%. The dataset used is very big and enriched for training the model. Hence, due to some technical issue, more impornat features like TFIDF and training the model with multiple features are very compotationaly costly, which are not fully implemented. With those problems overcome, the model could be over 93% in terms of accuracy. However, for learning purpose, the model performs nicely and adds great value for further learning and leaves a scope for improvement.
 
 
 
