@@ -33,26 +33,40 @@ it makes sense to use accuracy to
 
 evaluate our model.
 
-        Accuracy = (TP+TN)/(TP+FP+FN+TN)
+    Accuracy = (TP+TN)/(TP+FP+FN+TN)
+    
+
+<img src="accuracy_diagram.jpg" alt="drawing" width="80%"  style="float:right"/>
+
+The Graph of accuracy can be interpreted as, as the model learns, the accuracy get higher if the model has been designed in an efficient way with appropriate and sufficient features.
+
+
+<img src="accuracy_graph.PNG" alt="drawing" width="80%"  style="float:right"/>
+
+
+
 
 
 
 
 #### Log Loss: 
 
-Logarithmic Loss or Lof Loss classification works by eliminating the false classifications and works well with multiclass classification.
+Logarithmic Loss or Lof Loss classification works by eliminating the false classifications and works well with multiclass classification. Log Loss assigns a probability to each class for all the samples. 
 
-Log Loss assigns a probability to each class for all the samples. 
 
-            img formula
+<img src="log_loss_formula.png" alt="drawing" width="80%"  style="float:right"/>
 
-y_ij, indicates whether sample i belongs to class j or not
 
-p_ij, indicates the probability of sample i belonging to class j
+    y_ij, indicates whether sample i belongs to class j or not
+
+    p_ij, indicates the probability of sample i belonging to class j
+
 
 log loss has no upper bound, meaning can be from 0 to inf. log loss of zero means higher accuracy
 
 where bigger value means lower accuracy.
+
+<img src="log-loss.png" alt="drawing" width="80%"  style="float:right"/>
 
 
 
@@ -64,32 +78,31 @@ thresholds. graph plots
 
 True Positive on the y axis and False Positive on the x-axis. 
 
-True Positive Rate/Sensitivity: TPR = TP/(TP+FN)
 
-False Positive Rate/Specificity: FPR = FP/(FP+TN)
+    True Positive Rate/Sensitivity: TPR = TP/(TP+FN)
 
-The ROC curve shows the trade-off between sensitivity (or TPR) and specificity (1 – FPR). In simple terms, it is the curve of probability.
+    False Positive Rate/Specificity: FPR = FP/(FP+TN)
 
-Classifiers that give curves closer to the top-left corner indicate better performance. As a baseline,
 
-a random classifier is expected to give points lying along the diagonal (FPR = TPR). The closer the curve comes
+The ROC curve shows the trade-off between sensitivity (or TPR) and specificity (1 – FPR). In simple terms, it is the curve of probability. Classifiers that give curves closer to the top-left corner indicate better performance. As a baseline, a random classifier is expected to give points lying along the diagonal (FPR = TPR). The closer the curve comes to the 45-degree diagonal of the ROC space, the less accurate the test. ROC does not depend on the classification distribution. 
 
-to the 45-degree 
 
-diagonal of the ROC space, the less accurate the test. ROC does not depend on the classification 
+<img src="aoc_roc.PNG" alt="drawing" width="80%"  style="float:right"/>
 
-distribution. 
 
-AUC(Area under the ROC curve) is useful for comparing different classifiers and summarizing the performance
 
-of each classifier into a single measure. The most common approach is to compute the area under the ROC curve. 
+AUC(Area under the ROC curve) is useful for comparing different classifiers and summarizing the performance of each classifier into a single measure. The most common approach is to compute the area under the ROC curve. It is equivalent to the two-sample Wilcoxon rank-sum statistics. Higher the AUC, the better the model is at predicting 0 classes as 0 and 1 classes as 1. Depending upon the threshold, we can minimize or maximize them. When AUC is 0.7, It means there is a 70% chance that the model will be able to distinguish between positive class and negative class. The better teh model is, it will generate a result close to 0.5, meaning, the model can differenciate true positive and true negative from the data set. 
 
-It is equivalent to the two-sample Wilcoxon rank-sum statistics. Higher the AUC, the better the model is at predicting 0 classes as 0 
-and 1 classes as 1.
+From the below images, we can understand how the result can be interpreted. 
 
-Depending upon the threshold, we can minimize or maximize them. When AUC is 0.7,
+For a well designed model the ROC and AUC plots should look similar to this.  
 
-It means there is a 70% chance that the model will be able to distinguish between positive class and negative class.
+<img src="aoc_good.PNG" alt="drawing" width="80%"  style="float:right"/>
+
+
+From the below image, we can see that the model can only differentiate 70% of the true positive and true negatives. thats why the plots overlaps. 
+
+<img src="aoc_bad.PNG" alt="drawing" width="80%"  style="float:right"/>
 
 
 Which baselines did you use and why?
@@ -104,7 +117,7 @@ Is there anything we can learn from these results?
 
 
 
-
+### Preprocessing 
 
 Preprocessing of the data: 
 
@@ -135,6 +148,8 @@ forward fill and backward fill has been used to
 make sure that, there are no NAN values and the other part of the data can be used for other features instead of 
 getting rid of the whole data row. 
 
+<img src="images/info_about_the_dataset.PNG" alt="drawing" width="80%"  style="float:right"/>
+
 
 #### Delete Columns: 
 
@@ -143,7 +158,7 @@ Some data are not possible to fill because of the nature of the data and non-usa
 
 This are the columns have been removed:
 
-['user_rt','retweet_id','retweet_date','translate', 'trans_src', "near", "geo", "source","user_rt_id"]
+    'user_rt', 'retweet_id', 'retweet_date', 'translate', 'trans_src', 'near', 'geo', 'source', 'user_rt_id'
 
 
 #### Tokenization: 
@@ -158,7 +173,7 @@ For performing tokenization, first, the data has been converted into sentence to
 tokens, data has been processed into word tokens for further preprocessing. 
 
 
-#### Url removal: 
+#### URL removal: 
 
 For natural language preprocessing, the URLs don't represent anything except noise to the data. For getting rid of
 the extra noises, the URLs from the data has been removed for further preprocessing
@@ -208,9 +223,27 @@ Punctuation words make the data uninterpretable when it's being tokenized and le
 meaning and means to be removed to keep the data clean, readable, and computationally efficient.
 
 
-![Data Description](../images/info_about_the_dataset.PNG)
+The work flow of the preprocessing is well defined with the diagram below: 
 
-<img src="images/info_about_the_dataset.PNG" alt="drawing" width="40%"  style="float:right"/>
+
+
+<img src="preprocessing_diagram.PNG" alt="drawing" width="80%"  style="float:right"/>
+
+
+
+#### Unit Test of the Data Set: 
+
+After performing the pre processing steps, unit check has been performed to make sure our preprocessing steps in the pipeline is working as desired. 
+
+
+<img src="images/uni_test_preprocessing.PNG" alt="drawing" width="80%"  style="float:right"/>
+
+
+
+
+
+
+
 
 
 
