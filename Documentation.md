@@ -36,12 +36,12 @@ evaluate our model.
     Accuracy = (TP+TN)/(TP+FP+FN+TN)
     
 
-<img src="accuracy_diagram.jpg" alt="drawing" width="80%"  style="float:right"/>
+<img src="images/accuracy_diagram.jpg" alt="drawing" width="80%"  style="float:right"/>
 
 The Graph of accuracy can be interpreted as, as the model learns, the accuracy get higher if the model has been designed in an efficient way with appropriate and sufficient features.
 
 
-<img src="accuracy_graph.PNG" alt="drawing" width="80%"  style="float:right"/>
+<img src="images/accuracy_graph.PNG" alt="drawing" width="80%"  style="float:right"/>
 
 
 
@@ -54,7 +54,7 @@ The Graph of accuracy can be interpreted as, as the model learns, the accuracy g
 Logarithmic Loss or Lof Loss classification works by eliminating the false classifications and works well with multiclass classification. Log Loss assigns a probability to each class for all the samples. 
 
 
-<img src="log_loss_formula.png" alt="drawing" width="80%"  style="float:right"/>
+<img src="images/log_loss_formula.png" alt="drawing" width="80%"  style="float:right"/>
 
 
     y_ij, indicates whether sample i belongs to class j or not
@@ -66,7 +66,7 @@ log loss has no upper bound, meaning can be from 0 to inf. log loss of zero mean
 
 where bigger value means lower accuracy.
 
-<img src="log-loss.png" alt="drawing" width="80%"  style="float:right"/>
+<img src="images/log-loss.png" alt="drawing" width="80%"  style="float:right"/>
 
 
 
@@ -87,7 +87,7 @@ True Positive on the y axis and False Positive on the x-axis.
 The ROC curve shows the trade-off between sensitivity (or TPR) and specificity (1 – FPR). In simple terms, it is the curve of probability. Classifiers that give curves closer to the top-left corner indicate better performance. As a baseline, a random classifier is expected to give points lying along the diagonal (FPR = TPR). The closer the curve comes to the 45-degree diagonal of the ROC space, the less accurate the test. ROC does not depend on the classification distribution. 
 
 
-<img src="aoc_roc.PNG" alt="drawing" width="80%"  style="float:right"/>
+<img src="images/aoc_roc.PNG" alt="drawing" width="80%"  style="float:right"/>
 
 
 
@@ -97,12 +97,12 @@ From the below images, we can understand how the result can be interpreted.
 
 For a well designed model the ROC and AUC plots should look similar to this.  
 
-<img src="aoc_good.PNG" alt="drawing" width="80%"  style="float:right"/>
+<img src="images/aoc_good.PNG" alt="drawing" width="80%"  style="float:right"/>
 
 
 From the below image, we can see that the model can only differentiate 70% of the true positive and true negatives. thats why the plots overlaps. 
 
-<img src="aoc_bad.PNG" alt="drawing" width="80%"  style="float:right"/>
+<img src="images/aoc_bad.PNG" alt="drawing" width="80%"  style="float:right"/>
 
 
 Which baselines did you use and why?
@@ -227,7 +227,7 @@ The work flow of the preprocessing is well defined with the diagram below:
 
 
 
-<img src="preprocessing_diagram.PNG" alt="drawing" width="80%"  style="float:right"/>
+<img src="images/preprocessing_diagram.PNG" alt="drawing" width="80%"  style="float:right"/>
 
 
 
