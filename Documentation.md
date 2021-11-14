@@ -208,8 +208,8 @@ Punctuation words make the data uninterpretable when it's being tokenized and le
 meaning and means to be removed to keep the data clean, readable, and computationally efficient.
 
 
+![Data Description](../images/info_about_the_dataset.png)
 
-<img src="images/info_about_the_dataset.png" alt="drawing" width="100%"  style="float:left"/>
 
 
 
