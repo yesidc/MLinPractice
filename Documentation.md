@@ -155,7 +155,7 @@ steps:
 	tokenization. It is the building block of Natural Language Processing.
 
 	For performing tokenization, first, the data has been converted into sentence tokens. Then, from those sentence
-	 tokens, data has been processed into word tokens for further preprocessing. 
+	tokens, data has been processed into word tokens for further preprocessing. 
 
 
 #### Url removal: 
@@ -209,7 +209,9 @@ steps:
 
 	
 
-	Img********** has to be included. 
+	<img src="images/info_about_the_dataset.png" alt="drawing" width="100%"  style="float:left"/>
+
+	[comment]: <> (![df_description]&#40;images/info_about_the_dataset.png&#41;)
 	
 	
 ## Features Visualization
