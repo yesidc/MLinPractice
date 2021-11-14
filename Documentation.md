@@ -48,6 +48,7 @@ The Graph of accuracy can be interpreted as, as the model learns, the accuracy g
 
 
 <img src="images/accuracy_graph.PNG" alt="drawing" width="40%"  style="float:right"/>
+[source] <a href="https://www.researchgate.net/publication/328128143/figure/fig2/AS:678896869584898@1538873035724/Feature-Accuracy-graph.ppm">researchgate</a> 
 
 
 
@@ -63,7 +64,7 @@ Logarithmic Loss or Lof Loss classification works by eliminating the false class
 
 <img src="images/log_loss_formula.png" alt="drawing" width="40%"  style="float:right"/>
 
-[source] <a href="ttps://www.researchgate.net/publication/328128143/figure/fig2/AS:678896869584898@1538873035724/Feature-Accuracy-graph.ppm">researchgate</a> 
+
 
 
 
