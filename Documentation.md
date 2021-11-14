@@ -13,7 +13,7 @@ In the following documentation we provide specifics about the processes involved
 
 ### Design Decisions
 
-Which evaluation metrics did you use and why? 
+
 
 For the evaluation, three different Evaluation Matrices have been implemented. The implemented Evaluation Matrices are below. 
 
@@ -31,10 +31,6 @@ Accuracy Matrices tell us the proportion of the true results among the total num
 
 matrices to understand and easily fits for multiclass classification problems as well as binary classifications.
 
-As we know from our dataset of Tweets, it is indeed a well-balanced dataset with no skewed and no class imbalance, 
-it makes sense to use accuracy to 
-
-evaluate our model.
 
 
     Accuracy = (TP+TN)/(TP+FP+FN+TN)
@@ -63,14 +59,6 @@ Logarithmic Loss or Lof Loss classification works by eliminating the false class
 
 
 <img src="images/log_loss_formula.png" alt="drawing" width="40%"  style="float:right"/>
-
-
-
-
-
-
-]
-
 
     y_ij, indicates whether sample i belongs to class j or not
 
@@ -426,9 +414,11 @@ and reduced the dimensions to 2 `n_components = 2`.
 ### Results
 
 #### Explained variance ratio:
+
 We found that the principal component 1 holds 31.3% of the information while the second principal 
 component holds the 20%. On the other hand, we also found that after projecting  five-dimensional data
 to two-dimensional data, 48.7 % of the information was lost.
+
 
 #### Training split: visualization PCA
 
@@ -445,12 +435,12 @@ class (False). The results for the validation and test set do no differ much, yo
 
 ### Design Decisions
 
-Which classifier(s) did you use? Which hyperparameter(s) (with their respective
-candidate values) did you look at? What were your reasons for this?
+
 
 #### Multinomial Naive Bayes:
 
 We implemented Multinomial Naive Bayes (which implements the Naive Bayes algorithm) since, according to <a href="https://scikit-learn.org/stable/modules/naive_bayes.html">sklearn</a> documentation, besides it being a classic naive Bayes variant used in text classification; it also performes well with tf-idf vectors (which is one of the features we extracted)
+
 
 ### Training:
 
@@ -461,15 +451,19 @@ We did the training process on the grid. At first we tried to extract all the fe
 
 
 Result after running our classifiar with our selected features but, Principal Component Analysis and with out TFIDF:
+
 <img src="images/Multinomial_Bayes_no_tfidf_no_PCA.png" alt="drawing" width="50%"  style="float:right"/>
 
 
 results we get after running Majority class classfiar :
+
 <img src="images/Majority_no_PCA_no_tfidf.png" alt="drawing" width="50%"  style="float:right"/>
 
 
 Multinomial Bayes classifiar with out PCA:
+
 <img src="PCA_no_TFIDF__M_bayes_classifier.png" alt="drawing" width="50%"  style="float:right"/>
+
 
 
 
